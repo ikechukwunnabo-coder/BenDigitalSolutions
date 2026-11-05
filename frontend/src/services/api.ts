@@ -6,6 +6,14 @@ function getCookie(name: string) {
   if (parts.length === 2) return parts.pop()?.split(';').shift();
 }
 
+export function normalizeList(data: any) {
+  if (Array.isArray(data)) return data;
+  if (data?.results && Array.isArray(data.results)) return data.results;
+  if (data?.data?.results && Array.isArray(data.data.results)) return data.data.results;
+  if (data?.data && Array.isArray(data.data)) return data.data;
+  return [];
+}
+
 async function request(path: string, options: RequestInit = {}) {
   const method = (options.method || 'GET').toUpperCase();
   const headers: Record<string, string> = { 'Content-Type': 'application/json', ...((options.headers as any) || {}) };

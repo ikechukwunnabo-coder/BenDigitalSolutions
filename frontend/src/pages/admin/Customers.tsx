@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function Customers() {
   const [items, setItems] = useState<any[]>([]);
   const [form, setForm] = useState({ name: '', email: '', phone: '', company: '' });
-  const load = () => api.get('/customers/').then((d) => setItems(d.results || d || []));
+  const load = () => api.get('/customers/').then((d) => setItems(normalizeList(d)));
   useEffect(() => { load().catch(() => {}); }, []);
   const save = async (e: React.FormEvent) => { e.preventDefault(); await api.post('/customers/', form); setForm({ name: '', email: '', phone: '', company: '' }); load(); };
   const remove = async (id: number) => { await api.del(`/customers/${id}/`); load(); };

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function AuditAdmin() {
   const [items, setItems] = useState<any[]>([]);
-  useEffect(() => { api.get('/audit/').then((d) => setItems(d.results || d || [])).catch(() => {}); }, []);
+  useEffect(() => { api.get('/audit/').then((d) => setItems(normalizeList(d))).catch(() => {}); }, []);
   return (
     <div>
       <h1 className="mb-2 text-2xl font-bold">Audit Log (Read-only)</h1>

@@ -22,3 +22,7 @@ class EnquiryApiTests(TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertEqual(Lead.objects.count(), 1)
         self.assertEqual(Notification.objects.filter(recipient=self.admin, notification_type='enquiry').count(), 1)
+
+    def test_enquiry_validation(self):
+        res = self.client.post('/api/enquiries/', {'name': 'X'}, format='json')
+        self.assertEqual(res.status_code, 400)

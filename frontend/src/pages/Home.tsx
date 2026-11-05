@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchServices, fetchPortfolio } from '../services/api';
+import { fetchServices, fetchPortfolio, normalizeList } from '../services/api';
 
 export default function Home() {
   const [services, setServices] = useState<any[]>([]);
   const [portfolio, setPortfolio] = useState<any[]>([]);
 
   useEffect(() => {
-    fetchServices().then((d) => setServices((d.results || d || []).slice(0, 3))).catch(() => {});
-    fetchPortfolio().then((d) => setPortfolio((d.results || d || []).slice(0, 2))).catch(() => {});
+    fetchServices().then((d) => setServices(normalizeList(d).slice(0, 3))).catch(() => {});
+    fetchPortfolio().then((d) => setPortfolio(normalizeList(d).slice(0, 2))).catch(() => {});
   }, []);
 
   return (

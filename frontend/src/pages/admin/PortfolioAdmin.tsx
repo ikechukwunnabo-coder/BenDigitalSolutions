@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function PortfolioAdmin() {
   const [items, setItems] = useState<any[]>([]);
   const [form, setForm] = useState({ title: '', client: '', description: '', project_date: '', image_url: '', is_published: false, is_featured: false });
-  const load = () => api.get('/portfolio/').then((d) => setItems(d.results || d || []));
+  const load = () => api.get('/portfolio/').then((d) => setItems(normalizeList(d)));
   useEffect(() => { load().catch(() => {}); }, []);
   const save = async (e: React.FormEvent) => { e.preventDefault(); await api.post('/portfolio/', form); setForm({ title: '', client: '', description: '', project_date: '', image_url: '', is_published: false, is_featured: false }); load(); };
   const publish = async (p: any, v: boolean) => { await api.patch(`/portfolio/${p.slug}/`, { is_published: v }); load(); };

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function ProjectsAdmin() {
   const [items, setItems] = useState<any[]>([]);
   const [customers, setCustomers] = useState<any[]>([]);
   const [form, setForm] = useState({ customer: '', title: '', description: '', status: 'pending' });
-  const load = async () => { setItems((await api.get('/projects/')).results || await api.get('/projects/')); setCustomers((await api.get('/customers/')).results || await api.get('/customers/')); };
+  const load = async () => { setItems(normalizeList(await api.get('/projects/'))); setCustomers(normalizeList(await api.get('/customers/'))); };
   useEffect(() => { load().catch(() => {}); }, []);
   const save = async (e: React.FormEvent) => { e.preventDefault(); await api.post('/projects/', form); setForm({ customer: '', title: '', description: '', status: 'pending' }); load(); };
   const update = async (id: number, status: string) => { await api.patch(`/projects/${id}/`, { status }); load(); };

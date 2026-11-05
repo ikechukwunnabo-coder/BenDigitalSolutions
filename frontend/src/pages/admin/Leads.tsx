@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function Leads() {
   const [items, setItems] = useState<any[]>([]);
-  const load = () => api.get('/crm/').then((d) => setItems(d.results || d || []));
+  const load = () => api.get('/crm/').then((d) => setItems(normalizeList(d)));
   useEffect(() => { load().catch(() => {}); }, []);
   const updateStatus = async (id: number, status: string) => { await api.patch(`/crm/${id}/`, { status }); load(); };
   return (

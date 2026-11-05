@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function NotificationsAdmin() {
   const [items, setItems] = useState<any[]>([]);
-  const load = () => api.get('/notifications/').then((d) => setItems(d.results || d || []));
+  const load = () => api.get('/notifications/').then((d) => setItems(normalizeList(d)));
   useEffect(() => { load().catch(() => {}); }, []);
   const markRead = async (id: number) => { await api.post(`/notifications/${id}/mark_read/`); load(); };
   return (

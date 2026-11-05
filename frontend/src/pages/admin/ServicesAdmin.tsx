@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import { api, normalizeList } from '../../services/api';
 
 export default function ServicesAdmin() {
   const [items, setItems] = useState<any[]>([]);
   const [form, setForm] = useState({ title: '', description: '', is_active: true });
-  const load = () => api.get('/services/').then((d) => setItems(d.results || d || []));
+  const load = () => api.get('/services/').then((d) => setItems(normalizeList(d)));
   useEffect(() => { load().catch(() => {}); }, []);
   const save = async (e: React.FormEvent) => { e.preventDefault(); await api.post('/services/', form); setForm({ title: '', description: '', is_active: true }); load(); };
   const toggle = async (s: any) => { await api.patch(`/services/${s.slug}/`, { is_active: !s.is_active }); load(); };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchServices } from '../services/api';
+import { fetchServices, normalizeList } from '../services/api';
 
 export default function Services() {
   const [services, setServices] = useState<any[]>([]);
@@ -9,7 +9,7 @@ export default function Services() {
 
   useEffect(() => {
     fetchServices()
-      .then((d) => setServices(d.results || d || []))
+      .then((d) => setServices(normalizeList(d)))
       .catch(() => setError('Unable to load services.'))
       .finally(() => setLoading(false));
   }, []);

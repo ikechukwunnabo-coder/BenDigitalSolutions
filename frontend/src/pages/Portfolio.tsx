@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchPortfolio } from '../services/api';
+import { fetchPortfolio, normalizeList } from '../services/api';
 
 export default function Portfolio() {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchPortfolio().then((d) => setItems(d.results || d || [])).catch(() => {}).finally(() => setLoading(false));
+    fetchPortfolio().then((d) => setItems(normalizeList(d))).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
   return (
