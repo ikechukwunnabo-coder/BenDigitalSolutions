@@ -1,31 +1,26 @@
-# Session State — Ben Digital Solutions
+# Session State - Ben Digital Solutions
 
 **Last updated:** 2026-11-05  
 **Purpose:** Restart checkpoint for the solo PM+PO. Read this first, then `PROJECT_CONTEXT.md`, then `project-management/04-monitoring-control/open-actions.md`.
 
-## Current position (restart)
-
+## Current position
 | Item | Status |
 |------|--------|
-| **Phase 0 — Project definition** | Complete (approved) |
-| **Phase 1 — Planning** | Complete (approved) |
-| **Phase 2 — Architecture gate** | Approved (2026-11-02) |
-| **Phase 3 — Foundation** | Complete |
-| **Phase 4 — Development (MVP core)** | **In progress (substantially advanced)** — backend + React SPA public site + React admin SPA implemented per docs |
-| **Phase 5–6 — QA/Deployment** | Pending hardening & release checks |
+| **Phase 0 - Project definition** | Complete (approved) |
+| **Phase 1 - Planning** | Complete (approved) |
+| **Phase 2 - Architecture gate** | Approved (2026-11-02) |
+| **Phase 3 - Foundation** | Complete |
+| **Phase 4 - Development (MVP core)** | **Substantially complete** (backend + React public site + React admin SPA) |
+| **Phase 5-6 - QA/Deployment/Closeout** | **In progress** (acceptance hardening done; production deploy + formal UAT/closure pending) |
 
-## Completed this session
-- Aligned implementation to approved docs (WBS v1.1, requirements, API/architecture):
-  - Backend: `/api/enquiries/` (public) with lead+notification creation, `/api/dashboard/summary/` (admin), SPA auth endpoints (`/api/auth/*`), tightened permissions, portfolio fields + migration.
-  - Frontend: public pages (Home, About, Services/Detail, Portfolio/Detail, Contact) with shared layout; React admin SPA (login, dashboard, leads/customers/services/portfolio/projects/notifications/audit).
-- Local dev config: CORS/CSRF/session auth for `:3000` ? `:8081`. Checks/build/tests: `manage.py check` OK, frontend build OK, `crm.tests.EnquiryApiTests` passed.
+## Completed (latest)
+- MVP core per docs (WBS v1.1): public site + admin SPA, `/api/enquiries/`, auth/dashboard APIs, notifications, read-only audit (incl. API mutations), portfolio publish flow.
+- Hardening: pagination, normalized errors, seed demo (`seed_demo`), env-driven settings (`DATABASE_URL`/CORS/CSRF/hosts), `.env.example`, deployment guide + UAT checklist. **Backend tests 10/10 passing; frontend build OK.**
 
 ## Immediate next actions
-1. **Commit & push** updated implementation (note: unstaged/modified files exist).
-2. **Manual smoke test locally**: run backend (`py manage.py runserver 0.0.0.0:8081`) and frontend (`npm run dev`), submit enquiry, log into `/admin/login`, verify CRUD/notifications/audit flows.
-3. **Harden for MVP acceptance**: add pagination/filtering, better form/API error UX, expand tests (permissions, portfolio publish visibility, auth), add seed/demo data command, review security for non-dev.
-4. **Product/PM decisions**: confirm React admin SPA is the accepted admin UI (vs Django admin-only) and keep scope controlled to approved 8 modules.
+1. **Run manual UAT** using `docs/deployment/DEPLOYMENT_GUIDE.md` checklist on local env (seeded).
+2. **Production deploy prep**: set real env vars, PostgreSQL, Gunicorn+Nginx/TLS, static/media, smoke test.
+3. **Project controls**: update open-actions (close OA-02/03/04/05/06/09/14/15/16 if satisfied by existing artifacts; OA-07 before formal UAT; OA-11/OA-12 remain user actions), capture UAT evidence, then closure.
 
 ## Constraints / guardrails
-- Do **not** treat unapproved dates/budgets as baselines; do **not** start application code that deviates from approved scope without change control.
-- Admin/audit: audit remains read-only with restricted access. Notifications are in-app only.
+- Keep to approved 8-module MVP; no unapproved scope/spend/baseline changes. Audit remains read-only/restricted; notifications in-app only.
