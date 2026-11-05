@@ -51,5 +51,5 @@ def submit_enquiry(request):
     if serializer.is_valid():
         lead = serializer.save(source=request.data.get('source', 'website'))
         notify_admins('New Enquiry', f'New enquiry from {lead.name}', 'enquiry')
-        return Response({'message': 'Enquiry submitted successfully', 'data': serializer.data}, status=status.HTTP_201_CREATED)
-    return Response({'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'status': 'success', 'message': 'Enquiry submitted successfully', 'data': serializer.data}, status=status.HTTP_201_CREATED)
+    return Response({'status': 'error', 'message': 'Validation failed', 'errors': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
