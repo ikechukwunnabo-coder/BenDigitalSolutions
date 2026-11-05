@@ -1,5 +1,9 @@
 # Progress Log
 
+## 2026-11-05 (Manual UAT)
+- **Manual local UAT: PASS** (user-confirmed). Verified: dashboard summary, public pages (Home/About/Services+detail/Portfolio+detail), enquiry submission success ? lead + notification, lead status/CRUD basics, portfolio publish/unpublish affects public visibility, notifications read/unread, audit read-only visibility, staff-only admin access.
+- **Note:** Formal independent UAT sign-off still requires OA-07 (Independent UAT Reviewer) per project controls.
+
 ## 2026-11-05 (Acceptance pass + hardening)
 - **Acceptance fixes (pushed):** tightened admin-only permissions for `customers`/`projects` APIs; expanded audit logging to authenticated API mutations (read-only audit retained); SPA auth/login CSRF handling improved; public enquiry enforces `status=new` via separate public/admin serializers.
 - **Hardening (current):** DRF pagination + normalized error handler; demo seed command (`seed_demo`, creates admin if missing + sample data); frontend handles paginated lists and improved Contact validation/errors.

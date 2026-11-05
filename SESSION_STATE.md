@@ -10,17 +10,19 @@
 | **Phase 1 - Planning** | Complete (approved) |
 | **Phase 2 - Architecture gate** | Approved (2026-11-02) |
 | **Phase 3 - Foundation** | Complete |
-| **Phase 4 - Development (MVP core)** | **Substantially complete** (backend + React public site + React admin SPA) |
-| **Phase 5-6 - QA/Deployment/Closeout** | **In progress** (acceptance hardening done; production deploy + formal UAT/closure pending) |
+| **Phase 4 - Development (MVP core)** | Complete (per approved 8-module scope) |
+| **Phase 5 - Integration/QA** | **Manual local UAT passed (2026-11-05)**; formal independent UAT sign-off pending OA-07 |
+| **Phase 6 - Deployment/Closure** | Pending production deployment + formal closure artifacts |
 
-## Completed (latest)
-- MVP core per docs (WBS v1.1): public site + admin SPA, `/api/enquiries/`, auth/dashboard APIs, notifications, read-only audit (incl. API mutations), portfolio publish flow.
-- Hardening: pagination, normalized errors, seed demo (`seed_demo`), env-driven settings (`DATABASE_URL`/CORS/CSRF/hosts), `.env.example`, deployment guide + UAT checklist. **Backend tests 10/10 passing; frontend build OK.**
+## Completed
+- MVP implemented per WBS v1.1: public site (Home/About/Services+detail/Portfolio+detail/Contact), React admin SPA (login/dashboard/leads/customers/services/portfolio/projects/notifications/audit), APIs incl. `/api/enquiries/` + `/api/dashboard/summary/` + `/api/auth/*`, notifications, read-only audit, portfolio publish flow.
+- Hardening: tests (**10/10 passing**), pagination, normalized errors, env-driven config (`DATABASE_URL`/CORS/CSRF/hosts), seed data, deployment/UAT guide.
+- **Manual local UAT (2026-11-05): PASS** — dashboard, public pages, enquiry?lead+notification, lead status, CRUD basics, portfolio publish/unpublish visibility, notifications read/unread, audit read-only, staff-only access.
 
 ## Immediate next actions
-1. **Run manual UAT** using `docs/deployment/DEPLOYMENT_GUIDE.md` checklist on local env (seeded).
-2. **Production deploy prep**: set real env vars, PostgreSQL, Gunicorn+Nginx/TLS, static/media, smoke test.
-3. **Project controls**: update open-actions (close OA-02/03/04/05/06/09/14/15/16 if satisfied by existing artifacts; OA-07 before formal UAT; OA-11/OA-12 remain user actions), capture UAT evidence, then closure.
+1. **OA-07 / formal UAT:** appoint Independent UAT Reviewer before Week 11 for formal sign-off evidence (manual UAT passed but does not replace required reviewer gate).
+2. **Production deployment:** set env vars from `backend/.env.example`, provision PostgreSQL + Gunicorn/Nginx/TLS, build frontend with `VITE_API_BASE_URL`, run smoke tests.
+3. **Project controls/closure:** reconcile/update `open-actions.md` statuses with evidence, capture UAT/deployment evidence, complete closure report artifacts as applicable.
 
 ## Constraints / guardrails
-- Keep to approved 8-module MVP; no unapproved scope/spend/baseline changes. Audit remains read-only/restricted; notifications in-app only.
+- Keep to approved 8-module MVP; no unapproved scope/spend/baseline changes. Audit read-only/restricted; notifications in-app only.
