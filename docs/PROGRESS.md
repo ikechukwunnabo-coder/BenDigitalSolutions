@@ -1,28 +1,14 @@
----
-title: "Progress Tracker - Ben Digital Solutions"
-version: "1.0"
-status: "Active"
-date: "2026-11-02"
----
+# Progress Log
 
-# Progress Tracker
+## 2026-11-05
+- **Core MVP implementation aligned to approved docs (WBS v1.1, requirements, API/architecture):**
+  - **Backend:** Added `/api/enquiries/` (public) creating leads + admin notifications; added `/api/dashboard/summary/` (admin); added session auth endpoints (`/api/auth/csrf|login|logout|me/`) for SPA admin; tightened permissions (admin-only management for core modules; public read for services/portfolio); portfolio model extended (`image_url`, `is_featured`, publish timestamp handling) with migration.
+  - **Frontend (React SPA):** Replaced template with shared public layout and pages — Home, About, Services, Service Detail, Portfolio, Portfolio Detail, Contact (uses `/api/enquiries/`). Added React admin SPA with session login, dashboard, and management screens for Leads, Customers, Services, Portfolio (publish/unpublish), Projects, Notifications (read/unread), Audit (read-only).
+  - **Quality/Dev:** API client supports CSRF+credentials; CORS/CSRF trusted origins configured for local dev (frontend `:3000`, backend `:8081`); `manage.py check` clean; frontend build passes; added and passed enquiry API test (`crm.tests.EnquiryApiTests`).
+- **Status:** MVP is substantially more complete than the prior template, but still needs production hardening (pagination/filtering, richer validation/UX, more tests, seed data, deployment config review).
 
-## Phase Status
-| Phase | Status | Completion |
-| --- | --- | --- |
-| Phase 0 - Initiation/Baseline | Complete | 100% |
-| Phase 1 - Planning | Complete | 100% |
-| Phase 2 - Architecture | In Progress | 0% |
-| Phase 3 - Foundation | Not Started | 0% |
-| Phase 4 - Development | Not Started | 0% |
-| Phase 5 - Testing/QA | Not Started | 0% |
-| Phase 6 - Deployment/Closure | Not Started | 0% |
-
-## Recent Milestones
-- 2026-10-31: Project approved, Phase 0 complete
-- 2026-11-01: WBS v1.1 approved (reconciled with portfolio/notifications/audit)
-- 2026-11-02: Phase 1 planning complete, committed to git
-
-## Next Up
-- Complete Phase 2 architecture documentation
-- Get architecture gate approval before coding
+## 2026-11-02
+- **Backend Foundation:** Django 5.2.18 configured, 8 apps scaffolded (`accounts`, `customers`, `crm`, `services`, `portfolio`, `projects`, `notifications`, `audit`), DRF and CORS installed, database migrations applied successfully.
+- **Frontend Foundation:** Vite + React + TypeScript + Tailwind scaffolded in `frontend/`, public pages (Home, Services, Portfolio, Contact) and API integration created.
+- **QA:** `py manage.py check` passes with no issues (0 silenced). Migrations applied.
+- **Next:** Verify frontend build, add admin/API refinements and tests as needed, prepare deployment.

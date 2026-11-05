@@ -2,9 +2,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from crm.views import submit_enquiry
+from .views import dashboard_summary
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/enquiries/', submit_enquiry),
+    path('api/dashboard/summary/', dashboard_summary),
     path('api/services/', include('services.urls')),
     path('api/customers/', include('customers.urls')),
     path('api/crm/', include('crm.urls')),
@@ -12,6 +16,7 @@ urlpatterns = [
     path('api/projects/', include('projects.urls')),
     path('api/notifications/', include('notifications.urls')),
     path('api/audit/', include('audit.urls')),
+    path('api/auth/', include('accounts.urls')),
 ]
 
 if settings.DEBUG:
