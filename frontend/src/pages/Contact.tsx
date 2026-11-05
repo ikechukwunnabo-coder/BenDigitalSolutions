@@ -48,7 +48,7 @@ export default function Contact() {
           type="text"
           placeholder="Service"
           value={form.service}
-          onChange={(e) => setForm({...form, service: e.targetTaget?.value || e.target.value})}
+          onChange={(e) => setForm({...form, service: e.target.value})}
           className="w-full p-2 border rounded"
         />
         <textarea
