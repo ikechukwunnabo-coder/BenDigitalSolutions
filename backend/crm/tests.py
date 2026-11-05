@@ -22,7 +22,20 @@ class EnquiryApiTests(TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertEqual(Lead.objects.count(), 1)
         self.assertEqual(Notification.objects.filter(recipient=self.admin, notification_type='enquiry').count(), 1)
+        self.assertEqual(Lead.objects.first().status, 'new')
 
     def test_enquiry_validation(self):
         res = self.client.post('/api/enquiries/', {'name': 'X'}, format='json')
         self.assertEqual(res.status_code, 400)
+
+    def test_public_cannot_set_lead_status(self):
+        payload = {
+            'name': 'Test Client',
+            'email': 'client@example.com',
+            'phone': '08000000000',
+            'message': 'I need help',
+            'status': 'converted',
+        }
+        res = self.client.post('/api/enquiries/', payload, format='json')
+        self.assertEqual(res.status_code, 201)
+        self.assertEqual(Lead.objects.first().status, 'new')
