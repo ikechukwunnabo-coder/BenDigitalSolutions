@@ -1,15 +1,25 @@
 import { useEffect, useState } from 'react';
 import { api, normalizeList } from '../../services/api';
+import { Alert, Badge, Button, Card, EmptyState, LoadingState, PageHeader } from '../../components/ui';
 
 export default function NotificationsAdmin() {
   const [items, setItems] = useState<any[]>([]);
-  const load = () => api.get('/notifications/').then((d) => setItems(normalizeList(d)));
-  useEffect(() => { load().catch(() => {}); }, []);
-  const markRead = async (id: number) => { await api.post(`/notifications/${id}/mark_read/`); load(); };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const load = async () => { setLoading(true); setError(''); try { setItems(normalizeList(await api.get('/notifications/'))); } catch { setError('Unable to load notifications.'); } finally { setLoading(false); } };
+  useEffect(() => { load(); }, []);
+  const markRead = async (id: number) => { try { await api.post(`/notifications/${id}/mark_read/`); await load(); } catch { setError('Unable to mark notification as read.'); } };
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">In-app Notifications</h1>
-      <div className="space-y-2">{items.map((n) => <div key={n.id} className={`rounded border p-3 ${n.is_read ? 'bg-white' : 'bg-sky-50'}`}><div className="flex items-center justify-between"><div className="font-medium">{n.title}</div>{!n.is_read && <button onClick={()=>markRead(n.id)} className="text-sm text-sky-700">Mark read</button>}</div><div className="text-sm text-slate-600">{n.message}</div><div className="mt-1 text-xs text-slate-500">{n.notification_type} • {n.created_at}</div></div>)}{!items.length && <p className="text-slate-500">No notifications.</p>}</div>
+      <PageHeader title="In-app Notifications" description="Admin notifications (read/unread)." />
+      {error ? <Alert variant="error" className="mb-4">{error}</Alert> : null}
+      {loading ? <LoadingState label="Loading notifications?" /> : !items.length ? <EmptyState title="No notifications" description="New system notifications will appear here." /> : (
+        <div className="space-y-2" aria-live="polite">{items.map((n) => (
+          <Card key={n.id} className={n.is_read ? '' : 'ring-1 ring-sky-200'}>
+            <div className="flex items-start justify-between gap-3"><div><div className="flex items-center gap-2 font-medium">{n.title} {!n.is_read ? <Badge tone="info">Unread</Badge> : null}</div><div className="text-sm text-slate-600">{n.message}</div><div className="mt-1 text-xs text-slate-500">{n.notification_type} ? {n.created_at}</div></div>{!n.is_read ? <Button variant="secondary" onClick={()=>markRead(n.id)}>Mark read</Button> : null}</div>
+          </Card>
+        ))}</div>
+      )}
     </div>
   );
 }

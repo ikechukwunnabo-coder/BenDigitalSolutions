@@ -1,20 +1,20 @@
-# UI Components (Workflow 8 Foundation)
+# UI Components (Workflow 8)
 
 ## Purpose
-Reusable, accessible frontend building blocks for the Ben Digital Solutions MVP (React + TypeScript + Tailwind). This is a **foundation** aligned with `review.md` Workflow 8; not a full design system yet.
+Reusable, accessible frontend building blocks for the Ben Digital Solutions MVP (React + TypeScript + Tailwind), aligned with `review.md` Workflow 8 guidance (without committing `review.md`).
 
 ## Location
-- `frontend/src/components/ui/*`
+- `frontend/src/components/ui/*` (`index.ts` barrel export)
 - Shared styles/tokens helpers: `frontend/src/index.css` (`.bds-*` utilities, focus-visible base)
-- Tests: `frontend/src/components/ui/*.test.tsx`, `frontend/src/pages/*.test.tsx` (Vitest)
+- Tests: `frontend/src/components/ui/*.test.tsx`, `frontend/src/pages/*.test.tsx` (Vitest baseline)
 
-## Design tokens / conventions (current)
-- **Typography/layout:** Tailwind utility scale, slate/sky palette.
-- **Focus:** global `*:focus-visible` ring; components avoid removing outlines.
+## Design tokens / conventions
+- **Typography/layout:** Tailwind utility scale, slate/sky palette, `.bds-container/.bds-card/.bds-label/.bds-error/.bds-hint`.
+- **Focus/keyboard:** global `*:focus-visible` ring preserved; native controls/buttons/links used; admin layout includes skip link.
 - **Feedback states:** `Alert` (`success/error/info/warning`, `role=alert/status`, `aria-live`), `LoadingState` (`role=status`), `EmptyState`.
 - **Form accessibility:** `TextField`/`TextAreaField`/`SelectField` provide label association, required marker, `aria-invalid`, and `aria-describedby` to hint/error; errors render as `role="alert"`.
 - **Actions:** `Button` supports `disabled` + `loading` (`aria-busy`) and visible loading label.
-- **Containers:** `Card`, `PageHeader`, `Badge`.
+- **Containers/data display:** `Card`, `PageHeader`, `Badge`.
 
 ## Component API (summary)
 - `Button`: `variant?: primary|secondary|danger|ghost`, `loading?: boolean`, native button props.
@@ -42,19 +42,17 @@ import { Alert, Button, Card, PageHeader, TextField } from '../components/ui';
 ```
 
 ## Applied in MVP (refactored)
-- `frontend/src/pages/Contact.tsx` (validation + a11y + success/error/disabled/loading)
-- `frontend/src/pages/admin/AdminLayout.tsx` (skip link, nav labels, focus-visible)
-- `frontend/src/pages/admin/Leads.tsx` (loading/empty/error, status badge/select labels)
+- Public: `frontend/src/pages/Contact.tsx`
+- Admin: `frontend/src/pages/admin/AdminLayout.tsx`, `AdminLogin.tsx`, `Dashboard.tsx`, `Leads.tsx`, `Customers.tsx`, `ServicesAdmin.tsx`, `PortfolioAdmin.tsx`, `ProjectsAdmin.tsx`, `NotificationsAdmin.tsx`, `AuditAdmin.tsx`
 
 ## Accessibility verification (current pass)
 - **Labels & descriptions:** form controls use explicit `<label htmlFor>` and error/hint `aria-describedby`.
-- **Keyboard/focus:** global focus-visible ring preserved; skip link added in admin layout; native controls used.
-- **Assistive feedback:** alerts/loading use appropriate roles/live regions.
-- **Responsive:** components use fluid widths and Tailwind responsive layouts; verified via existing responsive pages/build.
-- **Manual checks still recommended:** screen reader pass (NVDA/VoiceOver), color-contrast audit, full keyboard-only walkthrough on all admin CRUD screens.
+- **Keyboard/focus:** global focus-visible ring preserved; skip link in admin layout; native controls used.
+- **Assistive feedback:** alerts/loading use appropriate roles/live regions; read-only audit table uses headers/scope.
+- **Responsive:** fluid widths/Tailwind responsive grids; build verified.
+- **Recommended follow-up:** NVDA/VoiceOver pass, color-contrast audit, keyboard-only walkthrough on all CRUD flows, axe automation, Playwright E2E.
 
-## Known gaps (next iteration)
-- Full refactor of all admin CRUD pages to shared components.
-- Stronger design tokens/theme file and Storybook-style examples.
-- DOM interaction tests in browser-like env (current CI/local test baseline uses smoke/module tests due to jsdom+css parser/tooling constraints on this machine) + E2E (Playwright).
-- Formal a11y automation (axe) once test env is stabilized.
+## Known gaps
+- Richer design tokens/theme file and visual examples/Storybook.
+- Deeper DOM interaction tests in stable browser-like env + E2E/axe automation.
+- Further extraction for complex table/form patterns as admin CRUD grows.

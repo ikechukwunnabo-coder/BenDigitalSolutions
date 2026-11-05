@@ -1,21 +1,33 @@
 import { useEffect, useState } from 'react';
 import { api, normalizeList } from '../../services/api';
+import { Alert, Button, Card, EmptyState, LoadingState, PageHeader, TextField } from '../../components/ui';
 
 export default function Customers() {
   const [items, setItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({ name: '', email: '', phone: '', company: '' });
-  const load = () => api.get('/customers/').then((d) => setItems(normalizeList(d)));
-  useEffect(() => { load().catch(() => {}); }, []);
-  const save = async (e: React.FormEvent) => { e.preventDefault(); await api.post('/customers/', form); setForm({ name: '', email: '', phone: '', company: '' }); load(); };
-  const remove = async (id: number) => { await api.del(`/customers/${id}/`); load(); };
+  const load = async () => { setLoading(true); setError(''); try { setItems(normalizeList(await api.get('/customers/'))); } catch { setError('Unable to load customers.'); } finally { setLoading(false); } };
+  useEffect(() => { load(); }, []);
+  const save = async (e: React.FormEvent) => { e.preventDefault(); setSaving(true); setError(''); try { await api.post('/customers/', form); setForm({ name: '', email: '', phone: '', company: '' }); await load(); } catch { setError('Unable to save customer.'); } finally { setSaving(false); } };
+  const remove = async (id: number) => { if (!confirm('Delete this customer?')) return; try { await api.del(`/customers/${id}/`); await load(); } catch { setError('Unable to delete customer.'); } };
   return (
     <div>
-      <h1 className="mb-4 text-2xl font-bold">Customers</h1>
-      <form onSubmit={save} className="mb-6 grid gap-2 rounded border bg-white p-4 md:grid-cols-4">
-        {Object.keys(form).map((k) => <input key={k} className="rounded border p-2" placeholder={k} value={(form as any)[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} required={['name','email','phone'].includes(k)} />)}
-        <button className="rounded bg-sky-600 px-4 py-2 text-white md:col-span-4">Add Customer</button>
-      </form>
-      <div className="space-y-2">{items.map((c) => <div key={c.id} className="flex items-center justify-between rounded border bg-white p-3"><div><div className="font-medium">{c.name}</div><div className="text-sm text-slate-600">{c.email} • {c.phone} • {c.company || '—'}</div></div><button onClick={() => remove(c.id)} className="text-sm text-red-600">Delete</button></div>)}</div>
+      <PageHeader title="Customers" description="Manage customer records (admin-only)." />
+      {error ? <Alert variant="error" className="mb-4">{error}</Alert> : null}
+      <Card className="mb-6">
+        <form onSubmit={save} className="grid gap-3 md:grid-cols-2" aria-label="Add customer form">
+          <TextField label="Name" name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+          <TextField label="Email" name="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <TextField label="Phone" name="phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
+          <TextField label="Company (optional)" name="company" value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} />
+          <div className="md:col-span-2"><Button type="submit" loading={saving}>Add Customer</Button></div>
+        </form>
+      </Card>
+      {loading ? <LoadingState label="Loading customers?" /> : !items.length ? <EmptyState title="No customers" description="Add a customer to begin tracking work." /> : (
+        <div className="space-y-2">{items.map((c) => <Card key={c.id} className="flex items-center justify-between gap-3"><div><div className="font-medium">{c.name}</div><div className="text-sm text-slate-600">{c.email} ? {c.phone} ? {c.company || '?'}</div></div><Button variant="ghost" onClick={() => remove(c.id)}>Delete</Button></Card>)}</div>
+      )}
     </div>
   );
 }
