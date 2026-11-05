@@ -22,12 +22,18 @@ npm run dev
 ```
 Set `VITE_API_BASE_URL=http://localhost:8081/api` if needed (default in code points to 8081).
 
+## Production templates (ready; update when details available)
+- `deploy/nginx/bds.conf.example`
+- `deploy/gunicorn/gunicorn.conf.py`
+- `deploy/gunicorn/bds-backend.service.example`
+- `deploy/README.md`
+
 ## Backend (production prep)
 1. Create `.env` from `backend/.env.example` and set strong `DJANGO_SECRET_KEY`, `DJANGO_DEBUG=False`, hosts/origins, and `DATABASE_URL`.
 2. Install deps: `pip install -r requirements.txt` (optional: add `dj-database-url` for URL parsing).
 3. Run: `python manage.py migrate && python manage.py collectstatic --noinput && python manage.py createsuperuser`.
-4. Run app server: `gunicorn config.wsgi:application --bind 0.0.0.0:8000` (behind Nginx/HTTPS).
-5. Configure Nginx to proxy `/api/` and `/admin/` to Gunicorn and serve frontend `dist/` + `/static/` + `/media/`.
+4. Run app server: `gunicorn config.wsgi:application -c deploy/gunicorn/gunicorn.conf.py` (behind Nginx/HTTPS).
+5. Configure Nginx from `deploy/nginx/bds.conf.example` (set domain/TLS/paths), proxy `/api/` and `/admin/` to Gunicorn and serve frontend `dist/` + `/static/` + `/media/`.
 
 ## Frontend (production)
 ```bash

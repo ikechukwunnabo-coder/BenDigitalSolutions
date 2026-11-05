@@ -1,0 +1,16 @@
+# /etc/systemd/system/bds-backend.service (example - update paths/user/domain env)
+[Unit]
+Description=Ben Digital Solutions Django Gunicorn
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/BenDigitalSolutions/backend
+EnvironmentFile=/var/www/BenDigitalSolutions/backend/.env
+ExecStart=/var/www/BenDigitalSolutions/backend/.venv/bin/gunicorn config.wsgi:application -c /var/www/BenDigitalSolutions/deploy/gunicorn/gunicorn.conf.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
