@@ -1,5 +1,10 @@
 from pathlib import Path
 import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / '.env')
+except Exception:
+    pass
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -66,14 +71,14 @@ if os.environ.get('DATABASE_URL'):
             import dj_database_url  # optional
             DATABASES = {'default': dj_database_url.parse(db_url, conn_max_age=600)}
         except Exception:
-            from urllib.parse import urlparse
+            from urllib.parse import urlparse, unquote
             u = urlparse(db_url)
             DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.postgresql',
                     'NAME': u.path.lstrip('/'),
-                    'USER': u.username,
-                    'PASSWORD': u.password,
+                    'USER': unquote(u.username) if u.username else '',
+                    'PASSWORD': unquote(u.password) if u.password else '',
                     'HOST': u.hostname,
                     'PORT': u.port or '',
                 }
@@ -122,3 +127,4 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     X_FRAME_OPTIONS = 'DENY'
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
