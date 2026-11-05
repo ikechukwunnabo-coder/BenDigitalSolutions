@@ -1,4 +1,4 @@
-# UAT Checklist (MVP) — Ben Digital Solutions
+# UAT Checklist (MVP) - Ben Digital Solutions
 
 ## Scope
 Approved 8 modules: accounts, customers, crm, services, portfolio, projects, notifications, audit.
@@ -7,8 +7,10 @@ Approved 8 modules: accounts, customers, crm, services, portfolio, projects, not
 - Backend checks: `py manage.py check` (pass)
 - Backend tests: `py manage.py test -v 1` (10/10 pass)
 - Frontend build: `npm run build` (pass)
+- Frontend unit/smoke (Vitest): `cd frontend; npm run test` (pass; shared UI export smoke baseline)
+- Frontend E2E (Playwright): `cd frontend; npm run test:e2e` — **configured**, requires `npm run test:e2e:install` and running local servers (`:3000` frontend, `:8081` backend for full flows). Current smoke specs: `frontend/e2e/smoke.spec.ts`.
 
-## Manual Local UAT (Executed 2026-11-05) — PASS
+## Manual Local UAT (Executed 2026-11-05) - PASS
 | Area | Result | Notes |
 |---|---|---|
 | Dashboard/API auth | Pass | CSRF/login/session + summary endpoints OK; PostgreSQL `bds` connected |
@@ -23,3 +25,4 @@ Approved 8 modules: accounts, customers, crm, services, portfolio, projects, not
 ## Formal UAT (Pending)
 - **OA-07:** Appoint Independent UAT Reviewer before Week 11 for formal sign-off evidence.
 - Capture reviewer name/date, evidence (screenshots/logs), defects (if any), and final acceptance decision.
+- Recommended evidence bundle: Playwright HTML/trace (if run), backend test output, `manage.py check`, build output, and screenshots for each MVP module flow.

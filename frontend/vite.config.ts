@@ -6,8 +6,9 @@ export default defineConfig({
   server: { port: 3000 },
   test: {
     environment: 'node',
-    setupFiles: './src/test/setup.ts',
     css: false,
     globals: true,
+    include: ['src/**/*.test.{ts,tsx}'],
+    exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**'],
   },
 })

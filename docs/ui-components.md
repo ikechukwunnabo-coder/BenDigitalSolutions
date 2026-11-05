@@ -6,7 +6,8 @@ Reusable, accessible frontend building blocks for the Ben Digital Solutions MVP 
 ## Location
 - `frontend/src/components/ui/*` (`index.ts` barrel export)
 - Shared styles/tokens helpers: `frontend/src/index.css` (`.bds-*` utilities, focus-visible base)
-- Tests: `frontend/src/components/ui/*.test.tsx`, `frontend/src/pages/*.test.tsx` (Vitest baseline)
+- Unit/smoke tests: `frontend/src/tests/ui.smoke.test.ts` (Vitest)
+- E2E: `frontend/e2e/smoke.spec.ts`, config `frontend/playwright.config.ts`, notes `frontend/e2e/README.md`
 
 ## Design tokens / conventions
 - **Typography/layout:** Tailwind utility scale, slate/sky palette, `.bds-container/.bds-card/.bds-label/.bds-error/.bds-hint`.
@@ -45,14 +46,14 @@ import { Alert, Button, Card, PageHeader, TextField } from '../components/ui';
 - Public: `frontend/src/pages/Contact.tsx`
 - Admin: `frontend/src/pages/admin/AdminLayout.tsx`, `AdminLogin.tsx`, `Dashboard.tsx`, `Leads.tsx`, `Customers.tsx`, `ServicesAdmin.tsx`, `PortfolioAdmin.tsx`, `ProjectsAdmin.tsx`, `NotificationsAdmin.tsx`, `AuditAdmin.tsx`
 
-## Accessibility verification (current pass)
-- **Labels & descriptions:** form controls use explicit `<label htmlFor>` and error/hint `aria-describedby`.
-- **Keyboard/focus:** global focus-visible ring preserved; skip link in admin layout; native controls used.
-- **Assistive feedback:** alerts/loading use appropriate roles/live regions; read-only audit table uses headers/scope.
-- **Responsive:** fluid widths/Tailwind responsive grids; build verified.
-- **Recommended follow-up:** NVDA/VoiceOver pass, color-contrast audit, keyboard-only walkthrough on all CRUD flows, axe automation, Playwright E2E.
+## Verification
+- **Unit/smoke:** `cd frontend; npm run test` (Vitest) — shared UI export smoke baseline.
+- **Build:** `cd frontend; npm run build` — OK.
+- **E2E (configured):** `cd frontend; npm run test:e2e:install` (once), run app servers, then `npm run test:e2e`. Playwright browser binaries were **not downloaded** in this session; smoke specs are committed and ready.
+- **Manual local UAT:** PASS 2026-11-05 (see `docs/uat/UAT_CHECKLIST.md`).
+- **Recommended follow-up:** authenticated CRUD E2E, axe accessibility automation, NVDA/VoiceOver pass, color-contrast audit, keyboard-only walkthrough.
 
 ## Known gaps
 - Richer design tokens/theme file and visual examples/Storybook.
-- Deeper DOM interaction tests in stable browser-like env + E2E/axe automation.
-- Further extraction for complex table/form patterns as admin CRUD grows.
+- Stable browser-like interaction tests for forms/state beyond smoke exports.
+- E2E execution evidence/CI integration and axe checks.
