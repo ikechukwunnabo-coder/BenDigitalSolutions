@@ -10,19 +10,20 @@
 | **Phase 1 - Planning** | Complete (approved) |
 | **Phase 2 - Architecture gate** | Approved (2026-11-02) |
 | **Phase 3 - Foundation** | Complete |
-| **Phase 4 - Development (MVP core)** | Complete (per approved 8-module scope) |
+| **Phase 4 - Development (MVP core)** | Complete (approved 8-module scope) |
+| **Workflow 8 UI foundation (review.md)** | **In progress (foundation delivered)** — shared UI components, a11y baseline, key page refactors, tests/build passing; full CRUD refactor pending |
 | **Phase 5 - Integration/QA** | **Manual local UAT passed (2026-11-05)**; formal independent UAT sign-off pending OA-07 |
 | **Phase 6 - Deployment/Closure** | Pending production deployment + formal closure artifacts |
 
-## Completed
-- MVP implemented per WBS v1.1: public site (Home/About/Services+detail/Portfolio+detail/Contact), React admin SPA (login/dashboard/leads/customers/services/portfolio/projects/notifications/audit), APIs incl. `/api/enquiries/` + `/api/dashboard/summary/` + `/api/auth/*`, notifications, read-only audit, portfolio publish flow.
-- Hardening: tests (**10/10 passing**), pagination, normalized errors, env-driven config (`DATABASE_URL`/CORS/CSRF/hosts), seed data, deployment/UAT guide.
-- **Manual local UAT (2026-11-05): PASS** — dashboard, public pages, enquiry?lead+notification, lead status, CRUD basics, portfolio publish/unpublish visibility, notifications read/unread, audit read-only, staff-only access.
+## Completed (latest)
+- Workflow 8 foundation: reusable components (`frontend/src/components/ui/*`), shared focus/tokens (`frontend/src/index.css`), refactored Contact/AdminLayout/Leads with loading/empty/error/success/disabled/label+a11y patterns; Vitest baseline **3/3 pass**; frontend build OK. Docs added: `docs/ui-components.md`.
+- Prior: MVP core per WBS v1.1, PostgreSQL local (`bds`) + `.env` loading, seed vision data, deployment templates, UAT checklist. Backend **10/10 tests pass**.
 
 ## Immediate next actions
-1. **OA-07 / formal UAT:** appoint Independent UAT Reviewer before Week 11 for formal sign-off evidence (manual UAT passed but does not replace required reviewer gate).
-2. **Production deployment:** set env vars from `backend/.env.example`, provision PostgreSQL + Gunicorn/Nginx/TLS, build frontend with `VITE_API_BASE_URL`, run smoke tests.
-3. **Project controls/closure:** reconcile/update `open-actions.md` statuses with evidence, capture UAT/deployment evidence, complete closure report artifacts as applicable.
+1. **Complete Workflow 8 rollout:** refactor remaining admin CRUD/public pages to shared components; add stronger component interaction tests + axe/E2E where feasible.
+2. **OA-07 / formal UAT:** appoint Independent UAT Reviewer and capture sign-off evidence.
+3. **Production deployment:** finalize env/domain/DB/TLS from templates and run smoke tests.
+4. **Controls:** update `open-actions.md`/closure artifacts with evidence (note `review.md` is untracked).
 
 ## Constraints / guardrails
-- Keep to approved 8-module MVP; no unapproved scope/spend/baseline changes. Audit read-only/restricted; notifications in-app only.
+- Keep to approved 8-module MVP implementation scope; deferred vision features remain roadmap-only. Audit read-only/restricted; notifications in-app only. No secrets in git.

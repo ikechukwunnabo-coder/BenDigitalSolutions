@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { submitEnquiry } from '../services/api';
+import { Alert, Button, Card, PageHeader, TextAreaField, TextField } from '../components/ui';
 
 type Form = { name: string; email: string; phone: string; service: string; message: string };
 
@@ -41,32 +42,25 @@ export default function Contact() {
   };
 
   const set = (k: keyof Form, v: string) => setForm((f) => ({ ...f, [k]: v }));
-  const field = (k: keyof Form, label: string, type = 'text', area = false) => (
-    <div>
-      {area ? <textarea placeholder={label} value={form[k]} onChange={(e) => set(k, e.target.value)} className="h-32 w-full rounded border p-2" required={k==='message'} /> : <input type={type} placeholder={label} value={form[k]} onChange={(e) => set(k, e.target.value)} className="w-full rounded border p-2" required={['name','email','phone'].includes(k)} />}
-      {errors[k] && <p className="mt-1 text-xs text-red-600">{String(errors[k])}</p>}
-    </div>
-  );
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
+    <div className="bds-container py-12">
       <div className="grid gap-8 md:grid-cols-2">
         <div>
-          <h1 className="mb-3 text-3xl font-bold">Contact Us</h1>
-          <p className="text-slate-600">Tell us about your needs. Your enquiry will be captured for follow-up.</p>
-          <div className="mt-6 rounded-lg border bg-white p-4 text-sm text-slate-600">
-            <p><strong>Location:</strong> Port Harcourt, Nigeria</p>
-          </div>
+          <PageHeader title="Contact Us" description="Tell us about your needs. Your enquiry will be captured for follow-up by the admin team." />
+          <Card className="text-sm text-slate-600"><p><strong>Location:</strong> Port Harcourt, Nigeria</p></Card>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4 rounded-lg border bg-white p-6 shadow-sm" noValidate>
-          {field('name','Full name')}
-          {field('email','Email address','email')}
-          {field('phone','Phone number','tel')}
-          {field('service','Service of interest (optional)')}
-          {field('message','Message','text',true)}
-          <button type="submit" disabled={loading} className="rounded bg-sky-600 px-6 py-2 font-semibold text-white hover:bg-sky-500 disabled:opacity-60">{loading ? 'Submitting...' : 'Submit Enquiry'}</button>
-          {status.message && <p className={status.type === 'success' ? 'text-green-700' : 'text-red-600'}>{status.message}</p>}
-        </form>
+        <Card>
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate aria-label="Contact enquiry form">
+            <TextField label="Full name" name="name" autoComplete="name" value={form.name} onChange={(e) => set('name', e.target.value)} error={errors.name} required />
+            <TextField label="Email address" name="email" type="email" autoComplete="email" value={form.email} onChange={(e) => set('email', e.target.value)} error={errors.email} required />
+            <TextField label="Phone number" name="phone" type="tel" autoComplete="tel" value={form.phone} onChange={(e) => set('phone', e.target.value)} error={errors.phone} required />
+            <TextField label="Service of interest (optional)" name="service" value={form.service} onChange={(e) => set('service', e.target.value)} />
+            <TextAreaField label="Message" name="message" value={form.message} onChange={(e) => set('message', e.target.value)} error={errors.message} className="h-32" required />
+            <Button type="submit" loading={loading} disabled={loading}>Submit Enquiry</Button>
+            {status.message ? <Alert variant={status.type === 'success' ? 'success' : 'error'}>{status.message}</Alert> : null}
+          </form>
+        </Card>
       </div>
     </div>
   );

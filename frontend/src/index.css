@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bds-focus: 14 165 233; /* sky-500 */
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-slate-50 text-slate-900 antialiased; }
+  *:focus-visible { outline: 2px solid rgb(var(--bds-focus)); outline-offset: 2px; }
+}
+
+@layer components {
+  .bds-container { @apply mx-auto w-full max-w-6xl px-4; }
+  .bds-card { @apply rounded-lg border border-slate-200 bg-white shadow-sm; }
+  .bds-label { @apply mb-1 block text-sm font-medium text-slate-700; }
+  .bds-hint { @apply mt-1 text-xs text-slate-500; }
+  .bds-error { @apply mt-1 text-xs text-red-700; }
+}

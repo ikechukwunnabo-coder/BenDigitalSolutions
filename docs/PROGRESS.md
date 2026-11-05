@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-11-05 (Workflow 8 UI foundation + docs)
+- **Frontend UI foundation (review.md Workflow 8, partial):** added reusable UI components in `frontend/src/components/ui/*` (`Button`, `TextField`, `TextAreaField`, `SelectField`, `Alert`, `Badge`, `Card`, `PageHeader`, `LoadingState`, `EmptyState`) with a11y-focused props/states; added shared base styles/tokens in `frontend/src/index.css`.
+- **Refactors applied:** `frontend/src/pages/Contact.tsx`, `frontend/src/pages/admin/AdminLayout.tsx`, `frontend/src/pages/admin/Leads.tsx` now use shared components (labels/errors, loading/disabled/success/error/empty states, skip link/nav focus).
+- **Testing:** Vitest setup added; `npx vitest@2.1.8 run` **3/3 tests passed** (smoke/module baseline). Frontend build passes. (Note: DOM-heavy jsdom+CSS parser deps were unstable on this machine; baseline tests adjusted and environment noted in `docs/ui-components.md`.)
+- **Docs updated:** `docs/ui-components.md` (architecture, props summary, usage, a11y verification, gaps), `SESSION_STATE.md`, and this progress log. `review.md` remains untracked.
+
 ## 2026-11-05 (Manual UAT)
 - **Manual local UAT: PASS** (user-confirmed). Verified: dashboard summary, public pages (Home/About/Services+detail/Portfolio+detail), enquiry submission success ? lead + notification, lead status/CRUD basics, portfolio publish/unpublish affects public visibility, notifications read/unread, audit read-only visibility, staff-only admin access.
 - **Note:** Formal independent UAT sign-off still requires OA-07 (Independent UAT Reviewer) per project controls.
