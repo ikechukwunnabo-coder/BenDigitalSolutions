@@ -8,7 +8,7 @@
 |------|--------|
 | **Phases 0–4** | Complete / approved MVP (8 modules, WBS v1.1) |
 | **Workflow 8 UI** | Implemented for MVP pages (`review.md` untracked) — shared UI/a11y; build OK; Vitest smoke |
-| **Playwright E2E** | Best-practice config applied (`127.0.0.1:3000`, CI retries/timeouts/artifacts, gitignored results). **Smoke 3/3 passed** in-session (used existing `[::1]:3000` binding); restart Vite for `127.0.0.1` binding. |
+| **Playwright E2E** | Configured + best-practice local host (`127.0.0.1:3000`). **Latest local run: 6 passed, 1 skipped** (`smoke`, `a11y`, optional `admin-auth` skipped without env credentials). Artifacts gitignored. |
 | **Phase 5 QA** | **Manual local UAT PASS (2026-11-05)**; **OA-07 formal sign-off pending** |
 | **Phase 6 Closure** | Pending production deployment + formal closure evidence |
 
@@ -17,7 +17,7 @@
 - **OA-11 (user):** remove Word lock file `~$...docx` if present.
 
 ## Immediate next actions
-1. Restart frontend (`cd frontend; npm run dev`) to bind `127.0.0.1:3000`; run `npm run test:e2e` (backend `:8081` up for full flows). Add authenticated CRUD/axe checks.
+1. Optional: run authenticated E2E with local env vars (`E2E_ADMIN_USERNAME`/`E2E_ADMIN_PASSWORD`) and extend CRUD coverage. Add `@axe-core/playwright` when dependency install is stable.
 2. Complete OA-07 formal UAT evidence.
 3. Production deployment: provide domain/VPS/DB/TLS details; use `docs/deployment/DEPLOYMENT_GUIDE.md`.
 

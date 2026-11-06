@@ -8,7 +8,7 @@ Approved 8 modules: accounts, customers, crm, services, portfolio, projects, not
 - Backend tests: `py manage.py test -v 1` (10/10 pass)
 - Frontend build: `npm run build` (pass)
 - Frontend unit/smoke (Vitest): `cd frontend; npm run test` (pass; shared UI export smoke baseline)
-- Frontend E2E (Playwright): `cd frontend; npm run test:e2e` — **configured**, requires `npm run test:e2e:install` and running local servers (`:3000` frontend, `:8081` backend for full flows). Current smoke specs: `frontend/e2e/smoke.spec.ts`.
+- Frontend E2E (Playwright): `cd frontend; npm run test:e2e` — **6 passed, 1 skipped** locally on 2026-11-05 (`smoke.spec.ts`, `a11y.spec.ts`; `admin-auth.spec.ts` skipped without env credentials). First-time setup: `npm run test:e2e:install`. Requires frontend `127.0.0.1:3000` + backend `127.0.0.1:8081` for full flows.
 
 ## Manual Local UAT (Executed 2026-11-05) - PASS
 | Area | Result | Notes |
