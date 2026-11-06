@@ -8,7 +8,7 @@
 |------|--------|
 | **Phases 0–4** | Complete / approved MVP (8 modules, WBS v1.1) |
 | **Workflow 8 UI** | Implemented for MVP pages (`review.md` untracked) — shared UI/a11y; build OK; Vitest smoke |
-| **Playwright E2E** | Configured + best-practice local host (`127.0.0.1:3000`). **Latest local run: 6 passed, 1 skipped** (`smoke`, `a11y`, optional `admin-auth` skipped without env credentials). Artifacts gitignored. |
+| **Playwright E2E** | Best-practice config + deterministic local host (`127.0.0.1:3000`). **Latest local run: 6 passed, 1 skipped** (`smoke`, `a11y`, optional `admin-auth` skipped without env credentials). Frontend `package.json` normalized (UTF-8/no-BOM) after transient parse issue. |
 | **Phase 5 QA** | **Manual local UAT PASS (2026-11-05)**; **OA-07 formal sign-off pending** |
 | **Phase 6 Closure** | Pending production deployment + formal closure evidence |
 
