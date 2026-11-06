@@ -5,9 +5,29 @@ Format follows Keep a Changelog conventions; dates are ISO 8601.
 
 ## [Unreleased]
 
+_No unreleased changes recorded yet._
+
+## [0.3.0] - 2026-11-06 — MVP implementation, testing hardening, and dev-stage readiness
+
 ### Added
-- Repository structure for project management, documentation, backend and frontend.
-- Git repository initialised.
+- Approved 8-module MVP backend/frontend implementation (accounts/customers/crm/services/portfolio/projects/notifications/audit), SPA auth, admin CRUD, dashboard, public pages, deployment templates (`deploy/`), and engineering/PM documentation updates.
+- Workflow 8 shared UI components (`frontend/src/components/ui/*`), a11y-focused page refactors, and `docs/ui-components.md`.
+- Playwright E2E suites/helpers (`frontend/e2e/*`): smoke, dependency-free a11y, optional authenticated admin smoke/CRUD, `auth.setup` + `storageState` path; Vitest smoke stabilized.
+- Real backend tests for previously stubbed apps: `audit`, `notifications`, `projects`, `services` (backend suite **21/21 passing**).
+- OA-07 formal UAT sign-off template and readiness notes in testing/control docs.
+
+### Changed
+- Local dev config hardened: Vite binds `127.0.0.1:3000` with proxy `/api` → `127.0.0.1:8081`, HMR host/port aligned, frontend API base defaults to `/api`.
+- `README.md` updated from pre-implementation status to current MVP/testing/deployment-pending state.
+- Playwright credential-mode login helper stabilized (clear cookies, explicit waits, retry on login alert); `storageState` remains preferred for authenticated runs.
+
+### Fixed
+- Duplicate local backend listener on `:8081` (stale process) stopped during dev verification.
+- Frontend local CORS/proxy/HMR and package encoding issues addressed in prior commits; HMR WebSocket host/port mismatch fixed (`77afa6d`).
+
+### Notes
+- `review.md` remains **untracked** by user request.
+- **OA-07** (external Independent UAT Reviewer sign-off) and **OA-11** (Word lock file, if present) remain open. Production deployment remains pending dev-stage testing completion and production credentials/details.
 
 ## [0.2.2] - 2026-11-02 — WBS v1.1 reconciliation
 

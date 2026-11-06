@@ -3,20 +3,19 @@
 Digital solutions, business automation and data intelligence for small and medium-sized
 businesses. Primary market: Nigeria. Timezone: Africa/Lagos. Currency: NGN.
 
-This repository holds both the project management record and (later) the application code.
-It is currently **between Phase 0 (approved) and Phase 1 (planning)**. No application code
-exists yet.
+This repository contains the project management record and the **approved 8-module MVP application** (Django/DRF backend + React/TypeScript/Vite frontend). Production deployment is intentionally pending until development-stage testing and production credentials/details are confirmed.
 
 ## Current status
 
 | Item | State |
 | --- | --- |
-| Phase | 0 complete — approved; Phase 1 planning next |
-| Initiation baseline | **Approved 2026-10-31** (charter and management plan) |
-| WBS baseline | **Approved v1.1 (2026-11-01)** |
-| Delivery baseline (schedule, budget, reconciled WBS) | Not established |
-| Application code | Not started (by instruction) |
-| Next gate | Phase 1 planning baseline approval — target 6 November 2026 |
+| Phases 0–4 | Complete for approved MVP scope (WBS v1.1) |
+| Initiation / WBS baselines | **Approved** (2026-10-31 / v1.1 2026-11-01) |
+| Application code | Implemented: `backend/` (Django 5.2/DRF) + `frontend/` (React/TS/Vite/Tailwind) |
+| Backend tests | **21/21 passing** (`cd backend && py manage.py test`) |
+| Frontend tests | Vitest smoke + Playwright E2E (smoke/a11y/admin flows; `storageState` preferred for authenticated runs) |
+| Manual UAT | Local UAT **PASS** 2026-11-05; **OA-07 formal external sign-off pending** |
+| Production deployment | **Pending** (dev-stage testing/credentials) — see `docs/deployment/DEPLOYMENT_GUIDE.md` |
 
 ## Structure
 
@@ -24,17 +23,18 @@ exists yet.
 archive/source-documents/     Original .docx files (read-only) + inventory
 project-management/
   01-initiation/              Charter, decision log, phase 0 authorisation, approval record
-  02-planning/                PM plan, WBS, MVP boundary, monitoring approach
-  03-execution/               Sprint records (empty)
-  04-monitoring-control/      Change log, issue log, open actions, weekly status
-  05-testing-acceptance/      Test and UAT records (empty)
-  06-closure/                 Closure report and lessons learned (empty)
-docs/                         Engineering documentation set (master prompt available)
-backend/                      Django 5.2 / DRF / Python (empty)
-frontend/                     React + TypeScript + Vite + Tailwind (empty)
+  02-planning/                PM plan, WBS, MVP boundary, monitoring, requirements, schedule, budget
+  03-execution/               Execution records / closure report
+  04-monitoring-control/      Change log, issue log, risk register, open actions, status
+  05-testing-acceptance/      UAT checklist, formal sign-off template
+  06-closure/                 Closure records
+docs/                         Engineering, testing, deployment, UI, UAT, progress docs
+backend/                      Django 5.2 / DRF app (approved MVP modules + API/auth)
+frontend/                     React + TypeScript + Vite + Tailwind SPA + Playwright/Vitest
+deploy/                       Nginx/Gunicorn/deployment templates
 SESSION_STATE.md              Restart checkpoint — read this first after a reboot
 PROJECT_CONTEXT.md            Living state of the project
-initialFileAssessment.md      Assessment of the original source documents
+CHANGELOG.md                  Notable project/application changes
 ```
 
 ## Read order
@@ -55,13 +55,18 @@ initialFileAssessment.md      Assessment of the original source documents
 Deferred: proposals, invoicing, payments, digital products, orders, subscriptions,
 learning, advanced analytics.
 
+## Local development (Windows)
+
+- Backend: `cd backend && py manage.py runserver 127.0.0.1:8081` (uses `backend/.env`, gitignored)
+- Frontend: `cd frontend && npm install && npm run dev` (Vite `127.0.0.1:3000`, proxy `/api` → `127.0.0.1:8081`)
+- Tests: `cd backend && py manage.py test`; `cd frontend && npm test`; `npm run test:e2e` (see `frontend/e2e/README.md`; authenticated runs prefer `auth.setup.ts` + `PLAYWRIGHT_USE_STORAGE_STATE=1`)
+
 ## Ground rules
 
-- Do not start application development before the architecture gate is approved.
+- Keep scope to the approved 8-module MVP unless change control approves expansion.
 - Do not fabricate approvals, test results or completed work.
-- Never edit or delete files in `archive/source-documents/`.
+- Never edit or delete files in `archive/source-documents/`. Keep `review.md` untracked unless explicitly requested.
 - Keep secrets out of the repository; use `.env` locally and `.env.example` as the template.
-- Proposed plans and approved baselines are different things. Label them correctly.
 
 ## Technology stack (approved)
 
