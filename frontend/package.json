@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
@@ -35,5 +35,3 @@
     "vitest": "^2.1.8"
   }
 }
-
-
