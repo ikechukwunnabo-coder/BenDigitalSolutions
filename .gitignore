@@ -68,3 +68,10 @@ desktop.ini
 # Local database dumps and credentials
 *.dump
 *.sql.gz
+
+# Local tooling artifacts
+.opencode/
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+frontend/playwright/.cache/
