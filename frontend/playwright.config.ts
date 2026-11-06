@@ -25,7 +25,10 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
   },
-  projects: useStorageState
-    ? [{ name: 'chromium', use: { ...devices['Desktop Chrome'], storageState: authFile } }]
-    : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'setup', testMatch: /auth\.setup\.ts/ },
+    ...(useStorageState
+      ? [{ name: 'chromium', dependencies: ['setup'], use: { ...devices['Desktop Chrome'], storageState: authFile } }]
+      : [{ name: 'chromium', use: { ...devices['Desktop Chrome'] }, testIgnore: /auth\.setup\.ts/ }]),
+  ],
 });
