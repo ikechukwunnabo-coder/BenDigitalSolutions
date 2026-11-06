@@ -1,14 +1,14 @@
 # Progress Log
 
-## 2026-11-05 (Workflow 8 UI rollout + test scaffolding)
-- **Reusable UI components:** `frontend/src/components/ui/*` with a11y-focused states/props; shared base styles in `frontend/src/index.css`.
-- **Pages refactored:** public `Contact`; admin `AdminLayout`, `AdminLogin`, `Dashboard`, `Leads`, `Customers`, `ServicesAdmin`, `PortfolioAdmin`, `ProjectsAdmin`, `NotificationsAdmin`, `AuditAdmin`.
-- **Verification:** frontend build OK (`npm run build`). Playwright E2E configured (`frontend/playwright.config.ts`, `frontend/e2e/smoke.spec.ts`, scripts `test:e2e*`) — **browser binaries not installed/run here** (`npm run test:e2e:install` + running `:3000/:8081` required). Vitest setup present but local execution was unreliable due Vite/Vitest config resolution on this machine; E2E + manual UAT used as UI verification baseline.
-- **Docs:** `docs/ui-components.md`, `docs/PROGRESS.md`, `SESSION_STATE.md`, `docs/uat/UAT_CHECKLIST.md`, `frontend/e2e/README.md` updated. `review.md` intentionally left untracked.
+## 2026-11-05 (Project controls + OA-07 prep)
+- **Open actions reconciled:** `project-management/04-monitoring-control/open-actions.md` updated with evidence-based closures for completed planning/technical-doc/repo actions; remaining open **OA-07** (Independent UAT Reviewer, external) and **OA-11** (user: remove Word lock file if present).
+- **Testing/closure records:** added `project-management/05-testing-acceptance/FORMAL_UAT_SIGNOFF_TEMPLATE.md` (OA-07 evidence/sign-off), updated `05-testing-acceptance/README.md`, `06-closure/README.md`.
+- **Docs/status alignment:** updated `docs/PROJECT_OVERVIEW.md`, `project-management/02-planning/dod-milestones.md`, `docs/uat/UAT_CHECKLIST.md`, `SESSION_STATE.md`.
+- **Workflow 8/UI QA:** reusable UI components + all admin/public key pages refactored; frontend build OK; `npm run test` **1/1** (Vitest smoke); Playwright E2E scaffold configured (`frontend/e2e/smoke.spec.ts`) — browser install/execution required locally. `review.md` intentionally untracked.
 
 ## 2026-11-05 (Manual UAT)
 - **Manual local UAT: PASS** (user-confirmed). Verified: dashboard summary, public pages, enquiry?lead+notification, admin CRUD/status, portfolio publish/unpublish visibility, notifications read/unread, audit read-only, staff-only access.
-- **Note:** Formal independent UAT sign-off still requires OA-07 (Independent UAT Reviewer).
+- **Note:** Formal independent UAT sign-off still requires OA-07.
 
 ## 2026-11-05 (Acceptance pass + hardening)
 - Tightened permissions/audit/auth; public enquiry enforces `status=new`; pagination + normalized errors; `seed_demo`; env-driven settings + `.env.example`.
