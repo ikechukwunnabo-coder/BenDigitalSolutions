@@ -18,15 +18,15 @@ export async function adminLogin(page: Page) {
   await expect(page).toHaveURL(/\/admin\/?$/, { timeout: 15_000 });
 }
 
-export async function getCsrfToken(context: BrowserContext) {
-  const cookies = await context.cookies('http://127.0.0.1:8081');
+export async function getCsrfToken(context: BrowserContext, baseURL = 'http://127.0.0.1:3000') {
+  const cookies = await context.cookies(baseURL);
   return cookies.find((c) => c.name === 'csrftoken')?.value;
 }
 
-export async function apiFetch(context: BrowserContext, path: string, method = 'GET', data?: unknown) {
-  const csrf = await getCsrfToken(context);
+export async function apiFetch(context: BrowserContext, path: string, method = 'GET', data?: unknown, baseURL = 'http://127.0.0.1:3000') {
+  const csrf = await getCsrfToken(context, baseURL);
   const headers: Record<string, string> = {};
   if (data) headers['Content-Type'] = 'application/json';
   if (csrf && !['GET', 'HEAD', 'OPTIONS'].includes(method)) headers['X-CSRFToken'] = csrf;
-  return context.request.fetch(`http://127.0.0.1:8081/api${path}`, { method, data, headers, failOnStatusCode: false });
+  return context.request.fetch(`${baseURL}/api${path}`, { method, data, headers, failOnStatusCode: false });
 }
