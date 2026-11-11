@@ -2,16 +2,22 @@ import { test, expect } from '@playwright/test';
 import { adminLogin, apiFetch, hasAdminCreds } from './helpers/admin';
 
 async function ensureAuth(page: import('@playwright/test').Page) {
+  const adminMain = page.locator('#admin-main');
   await page.goto('/admin');
+  await Promise.race([
+    adminMain.waitFor({ state: 'visible', timeout: 15_000 }).catch(() => {}),
+    page.waitForURL(/\/admin\/login/, { timeout: 15_000 }).catch(() => {}),
+  ]);
   if (page.url().includes('/admin/login')) {
     test.skip(!hasAdminCreds(), 'Set E2E_ADMIN_USERNAME/E2E_ADMIN_PASSWORD or generate playwright/.auth/admin.json via auth.setup.');
     await adminLogin(page);
   }
-  await expect(page.locator('#admin-main')).toBeVisible({ timeout: 15_000 });
+  await expect(adminMain).toBeVisible({ timeout: 15_000 });
 }
 
 test.describe('admin CRUD smoke (local, optional)', () => {
   test.describe.configure({ mode: 'serial' });
+  test.skip(!hasAdminCreds(), 'Set E2E_ADMIN_USERNAME and E2E_ADMIN_PASSWORD to run authenticated admin CRUD smoke tests.');
 
   test('staff can access key admin routes', async ({ page }) => {
     await ensureAuth(page);
