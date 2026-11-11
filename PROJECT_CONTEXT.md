@@ -39,7 +39,13 @@ Completed:
 Deferred / not actioned:
 - Production deployment — explicitly deferred by owner decision (2026-11-11); deployment
   templates remain available in `deploy/` and `docs/deployment/`
-- OA-11 administrative Word lock-file cleanup (user action, non-blocking)
+
+Closed 2026-11-11 (post-restart):
+- OA-11 Word lock-file cleanup — lock file found present and removed
+- OA-18 duplicate Vite template directory (`CUsersSOLUTIONDesktopBenDigitalSolutionsfrontend`)
+  — owner-approved removal of 18 tracked files, committed
+- Local verification re-run: backend `check` clean, backend tests **21/21**, frontend build OK,
+  Vitest **1/1**; local Playwright E2E deferred (host RAM 0.9 GB free), CI run `43077766787` green
 
 ## Decisions in force
 
@@ -77,8 +83,8 @@ Deferred / not actioned:
 ## Next task
 
 Maintain Phase 6 closure records and keep CI green. Production deployment is intentionally
-deferred; reopen only if the owner authorises it. Complete OA-11 administrative cleanup when
-convenient.
+deferred; reopen only if the owner authorises it. OA-11 and OA-18 are closed; no open actions
+remain.
 
 ## Standing rules
 

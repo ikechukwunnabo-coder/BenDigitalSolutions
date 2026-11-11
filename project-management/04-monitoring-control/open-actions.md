@@ -16,16 +16,17 @@ Owner of all actions unless stated: Project Manager (Benjamin Ikechukwu Nnabo)
 | OA-08 | Personally review and sign approval record | Approval record | Phase 0 gate | **Closed** | Approved 2026-10-31 (approval-record v1.1). |
 | OA-09 | Holiday-aware capacity plan (21 Dec 2026�3 Jan 2027) + 15�20% contingency | Phase 0 auth | Phase 1 | **Closed (baseline)** | Captured in `project-schedule.md` and WBS v1.1 contingency (31.5 hrs / 18%). |
 | OA-10 | Resolve WBS filename ambiguity | File assessment | Phase 0 | **Closed** | Working copy `work-breakdown-structure.md`; original archived. |
-| OA-11 | Close Microsoft Word to remove `~$...docx` lock file | Archive instruction | Phase 0 | **Open (user action)** | Check/remove local lock file if present before final archival edits. |
+| OA-11 | Close Microsoft Word to remove `~$...docx` lock file | Archive instruction | Phase 0 | **Closed** | Lock file `~$w to monitor your project in practice.docx` found present and removed 2026-11-11 (post-restart maintenance). |
 | OA-12 | Create initial Git commit / repo history | Repository setup | Phase 0 gate | **Closed** | Git history present and pushed to `origin/main` (e.g., `eda38ec`, prior commits). Record formal approval note in controls if required. |
 | OA-13 | Resolve Python version mismatch (3.12 vs 3.14.8) | Environment check | Phase 3 | **Closed** | Python 3.14.8 approved (CR-001). |
 | OA-14 | Write technical documentation set | Master eng prompt A�11 | Phase 2 | **Closed** | `docs/SYSTEM_ARCHITECTURE.md`, `DATABASE_DESIGN.md`, `API_DESIGN.md`, `SECURITY_PLAN.md`, `TESTING_STRATEGY.md`, `PERFORMANCE_PLAN.md`, `DEVELOPMENT_ROADMAP.md`, `PROJECT_OVERVIEW.md`, `PROGRESS.md` (+ deployment/UI/UAT docs). |
 | OA-15 | Create `docs/PROJECT_OVERVIEW.md` and `docs/PROGRESS.md` continuity files | Master eng prompt A�11 | Phase 2 | **Closed** | Files present and maintained. |
 | OA-16 | Define Definition of Done and milestone acceptance criteria | Decision log | Phase 1 | **Closed (baseline v1.0)** | `project-management/02-planning/dod-milestones.md` (milestone statuses require periodic update). |
 | OA-17 | Confirm Django 5.2 supports installed Python 3.14, or use side-by-side 3.12 | Environment check | Phase 3 | **Closed** | Django 5.2.8+ supports Python 3.14; project pins compatible Django. |
+| OA-18 | Remove accidentally committed duplicate Vite template directory `CUsersSOLUTIONDesktopBenDigitalSolutionsfrontend` (18 files, committed in `3c0a395`) | Post-restart repo audit 2026-11-11 | Phase 6 | **Closed** | Owner approved; 18 tracked files removed and committed 2026-11-11 (`chore: remove accidental duplicate Vite template directory`). |
 
 ## Open summary
-- **OA-11** � user action: remove Word lock file if present (administrative only; does not block closure).
+- No open actions. OA-11 and OA-18 closed 2026-11-11.
 
 ## Rules
 - An action is closed only with a recorded resolution/evidence reference, not on intent.
