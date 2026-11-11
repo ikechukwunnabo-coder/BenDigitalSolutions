@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-11-11 (CI green + dependency security)
+- **CI fixed and green:** run `43073393351` passes backend + frontend; runners pinned to `ubuntu-24.04` (Playwright 1.52 rejected Ubuntu 26.04).
+- **Actions bumped:** `checkout@v7`, `setup-node@v7`, `setup-python@v7` (Node 20 deprecation warnings cleared).
+- **Security:** `react-router-dom` 7.18.5, `@playwright/test` 1.65.0, `vitest` 4.1.12; `npm audit` **0 vulnerabilities** (was 10).
+- **E2E:** optional admin suites skip without credentials; `auth.setup` skips before browser launch.
+- **Local E2E note:** timeouts traced to host RAM exhaustion (1.2/5.8 GB free), not code; CI clean-runner green.
+
 ## 2026-11-11 (Closure + hardening)
 - **OA-07 closed** (owner-confirmed): formal UAT **Accepted**; evidence file `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md`.
 - **Phase 6 closure completed:** `project-management/03-execution/closure-report.md` updated. Production deployment **deferred by owner decision**.
