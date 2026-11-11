@@ -19,7 +19,7 @@ Date: 2026-10-31
 ## Notes
 
 - S-01 and S-02 are the same individual. Governance risk: no separation of request and approval. The independent reviewer (S-05) partly mitigates this.
-- S-05 is a role only. **Open action OA-07** covers appointment before UAT.
+- S-05 is a role only. **Action OA-07** (appointment before UAT) is closed (2026-11-11).
 - No supplier is engaged. Domain and hosting procurement remains unapproved until the Phase 7 cost review.
 
 ## Power / interest summary

@@ -3,10 +3,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from crm.views import submit_enquiry
-from .views import dashboard_summary
+from .views import dashboard_summary, health
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/health/', health),
     path('api/enquiries/', submit_enquiry),
     path('api/dashboard/summary/', dashboard_summary),
     path('api/services/', include('services.urls')),

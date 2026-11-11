@@ -1,10 +1,18 @@
 # Progress Log
 
+## 2026-11-11 (Closure + hardening)
+- **OA-07 closed** (owner-confirmed): formal UAT **Accepted**; evidence file `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md`.
+- **Phase 6 closure completed:** `project-management/03-execution/closure-report.md` updated. Production deployment **deferred by owner decision**.
+- **CI added:** `.github/workflows/ci.yml` runs backend check/tests, frontend build, Vitest and Playwright E2E.
+- **E2E hardening:** Playwright `webServer` auto-starts backend + Vite; new `/api/health/` endpoint; `@axe-core/playwright` scans in `a11y.spec.ts`.
+- **Doc/config drift fixed:** `PROJECT_CONTEXT.md`, `docs/DEVELOPMENT_ROADMAP.md`, root `.env.example`, `frontend/README.md`.
+- **Verification:** backend **21/21**; frontend build OK; Vitest **1/1**.
+
 ## 2026-11-05 (E2E/auth-a11y/CRUD/storageState hardening)
 - **Playwright best practices:** `frontend/vite.config.ts` binds Vite to `127.0.0.1:3000` (`strictPort`); `frontend/playwright.config.ts` defaults to `127.0.0.1:3000` with CI retries/workers/forbidOnly, explicit timeouts, failure artifacts, and optional `storageState` mode (`PLAYWRIGHT_USE_STORAGE_STATE=1`, `frontend/playwright/.auth/admin.json` gitignored). `frontend/src/services/api.ts` defaults API base to `http://127.0.0.1:8081/api` for deterministic local E2E.
 - **E2E suites:** `frontend/e2e/smoke.spec.ts`, `frontend/e2e/a11y.spec.ts` (dependency-free), `frontend/e2e/admin-auth.spec.ts` (optional), `frontend/e2e/admin-crud.spec.ts` (authenticated admin routes + CRUD smoke for services/customers/portfolio/projects with cleanup; read checks for leads/notifications/audit; uses UI auth + Playwright request context/session+CSRF), `frontend/e2e/auth.setup.ts` (optional `storageState` bootstrap), helpers in `frontend/e2e/helpers/admin.ts`. No credentials committed.
 - **Fixes:** normalized `frontend/package.json` to UTF-8/no-BOM JSON; fixed Playwright ESM path handling (`fileURLToPath`/`__dirname`); aligned frontend API base to `127.0.0.1` for local E2E.
-- **Verification (local, 2026-11-05):** smoke+a11y **6 passed**. StorageState mode (`auth.setup` generated state; `PLAYWRIGHT_USE_STORAGE_STATE=1`) admin CRUD **5 passed, 1 skipped**. Credential-mode authenticated tests may be environment-sensitive (browser/session reuse) — storageState bootstrap is the preferred stable path for admin suites.
+- **Verification (local, 2026-11-05):** smoke+a11y **6 passed**. StorageState mode (`auth.setup` generated state; `PLAYWRIGHT_USE_STORAGE_STATE=1`) admin CRUD **5 passed, 1 skipped**. Credential-mode authenticated tests may be environment-sensitive (browser/session reuse) ï¿½ storageState bootstrap is the preferred stable path for admin suites.
 
 ## 2026-11-05 (Project controls + OA-07 prep)
 - Open actions reconciled with evidence; remaining open **OA-07** (Independent UAT Reviewer) and **OA-11** (Word lock file if present). OA-07 template: `project-management/05-testing-acceptance/FORMAL_UAT_SIGNOFF_TEMPLATE.md`.

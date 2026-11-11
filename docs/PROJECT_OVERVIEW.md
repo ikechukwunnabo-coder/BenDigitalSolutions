@@ -1,8 +1,8 @@
 ---
 title: "Project Overview - Ben Digital Solutions"
-version: "1.1"
-status: "Current"
-date: "2026-11-05"
+version: "1.2"
+status: "Closed"
+date: "2026-11-11"
 ---
 
 # Project Overview
@@ -12,18 +12,20 @@ date: "2026-11-05"
 - **Purpose:** Digital solutions, business automation and data intelligence for SMEs (Nigeria)
 - **Delivery Model:** Solo development with AI assistance
 - **Methodology:** Hybrid (formal PM controls + Agile iterations)
-- **Approved MVP:** 8 modules — `accounts`, `customers`, `crm`, `services`, `portfolio`, `projects`, `notifications`, `audit` (WBS v1.1)
+- **Approved MVP:** 8 modules ï¿½ `accounts`, `customers`, `crm`, `services`, `portfolio`, `projects`, `notifications`, `audit` (WBS v1.1)
 
 ## Technology Stack
 - Backend: Python 3.14.8, Django >=5.2.8,<6.0, Django REST Framework
 - Database: PostgreSQL 17 (local/prod target; SQLite fallback supported by settings)
 - Frontend: React + TypeScript + Vite + Tailwind CSS
-- Infrastructure: Deployment templates prepared; production target pending (domain/VPS/DB/TLS)
+- Infrastructure: Deployment templates prepared; production deployment deferred by owner (2026-11-11)
 
-## Current Status (2026-11-05)
-- Phases 0–2: complete/approved. Phases 3–4 MVP implementation: complete.
-- QA: `manage.py check` OK; backend **10/10 tests** pass; frontend build OK; Playwright/Vitest scaffolding added. **Manual local UAT: PASS** (2026-11-05).
-- Pending for closure: **OA-07** formal Independent UAT sign-off, production deployment/smoke, final controls reconciliation. `review.md` left untracked by request.
+## Current Status (2026-11-11)
+- Phases 0ï¿½4: complete/approved. MVP implementation: complete for all 8 approved modules.
+- QA: `manage.py check` OK; backend **21/21 tests** pass; frontend build OK; Vitest smoke + Playwright smoke/a11y (6/6) with axe-core. **Manual local UAT: PASS** (2026-11-05).
+- **OA-07 formal UAT sign-off:** closed (owner-confirmed 2026-11-11). **Phase 6 closure:** closed.
+- **Production deployment:** deferred by owner decision. `review.md` left untracked by request.
+- **CI:** GitHub Actions workflow (`.github/workflows/ci.yml`).
 
 ## Key References
 - Restart: `SESSION_STATE.md`, `docs/PROGRESS.md`

@@ -7,6 +7,25 @@ Format follows Keep a Changelog conventions; dates are ISO 8601.
 
 _No unreleased changes recorded yet._
 
+## [0.4.0] - 2026-11-11 — MVP closure, CI, and quality hardening
+
+### Added
+- GitHub Actions CI (`.github/workflows/ci.yml`): backend system check/tests, frontend build, Vitest, and Playwright E2E.
+- Playwright `webServer` auto-start for backend + Vite, and backend health endpoint `GET /api/health/`.
+- `@axe-core/playwright` accessibility scans for serious/critical WCAG 2 A/AA violations in `frontend/e2e/a11y.spec.ts`.
+- Project-specific `frontend/README.md` replacing the Vite template boilerplate.
+
+### Changed
+- **OA-07 closed — formal UAT Accepted** (owner-confirmed 2026-11-11); UAT evidence record at `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md`.
+- **Phase 6 closure completed** (`project-management/03-execution/closure-report.md`); production deployment deferred by owner decision.
+- `PROJECT_CONTEXT.md`, `docs/DEVELOPMENT_ROADMAP.md`, `docs/PROGRESS.md`, `SESSION_STATE.md`, `README.md` updated to current state.
+- Root `.env.example` corrected to match `config.settings` (`DATABASE_URL`, `:8081` API base, no non-existent `config.settings.dev`).
+
+### Notes
+- OA-11 remains the only open action (administrative Word lock-file cleanup).
+- `review.md` remains untracked by owner request.
+- Production deployment templates are retained but not executed.
+
 ## [0.3.0] - 2026-11-06 — MVP implementation, testing hardening, and dev-stage readiness
 
 ### Added

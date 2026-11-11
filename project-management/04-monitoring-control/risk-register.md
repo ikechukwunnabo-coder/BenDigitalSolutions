@@ -16,4 +16,4 @@ date: 2026-11-02
 | R-005 | Holiday block | Schedule | H | M | High | Plan around Dec 21-Jan 3 | Extend if needed | PM/PO | Open |
 | R-006 | Notifications/Audit complexity | Technical | M | M | Med | Clear scope in v1.1 | Use contingency | PM/PO | Open |
 | R-007 | Power/internet (Nigeria) | Env | M | M | Med | Flexible schedule | Adjust hours | PM/PO | Open |
-| R-008 | No UAT reviewer | Quality | M | H | High | Track OA-07 | Document if needed | PM/PO | Open |
+| R-008 | No UAT reviewer | Quality | M | H | High | Track OA-07 | Document if needed | PM/PO | Closed (OA-07 closed 2026-11-11) |

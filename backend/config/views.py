@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 from customers.models import Customer
 from crm.models import Lead
@@ -7,6 +7,12 @@ from projects.models import Project
 from services.models import Service
 from portfolio.models import PortfolioItem
 from notifications.models import Notification
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def health(request):
+    return Response({'status': 'ok'})
 
 
 @api_view(['GET'])

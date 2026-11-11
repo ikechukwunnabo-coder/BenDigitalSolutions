@@ -3,7 +3,7 @@
 Digital solutions, business automation and data intelligence for small and medium-sized
 businesses. Primary market: Nigeria. Timezone: Africa/Lagos. Currency: NGN.
 
-This repository contains the project management record and the **approved 8-module MVP application** (Django/DRF backend + React/TypeScript/Vite frontend). Production deployment is intentionally pending until development-stage testing and production credentials/details are confirmed.
+This repository contains the project management record and the **approved 8-module MVP application** (Django/DRF backend + React/TypeScript/Vite frontend). The MVP is complete and closed; production deployment is intentionally deferred by owner decision, with templates retained for future use.
 
 ## Current status
 
@@ -13,9 +13,11 @@ This repository contains the project management record and the **approved 8-modu
 | Initiation / WBS baselines | **Approved** (2026-10-31 / v1.1 2026-11-01) |
 | Application code | Implemented: `backend/` (Django 5.2/DRF) + `frontend/` (React/TS/Vite/Tailwind) |
 | Backend tests | **21/21 passing** (`cd backend && py manage.py test`) |
-| Frontend tests | Vitest smoke + Playwright E2E (smoke/a11y/admin flows; `storageState` preferred for authenticated runs) |
-| Manual UAT | Local UAT **PASS** 2026-11-05; **OA-07 formal external sign-off pending** |
-| Production deployment | **Pending** (dev-stage testing/credentials) — see `docs/deployment/DEPLOYMENT_GUIDE.md` |
+| Frontend tests | Vitest smoke + Playwright E2E (smoke/a11y with axe-core/admin flows; auto-start `webServer`) |
+| Manual UAT | Local UAT **PASS** 2026-11-05; **OA-07 formal sign-off closed** (owner-confirmed 2026-11-11) |
+| Phase 6 closure | **Closed** — see `project-management/03-execution/closure-report.md` |
+| Production deployment | **Deferred by owner** (2026-11-11) — templates in `deploy/` and `docs/deployment/` |
+| CI | GitHub Actions — `.github/workflows/ci.yml` (backend tests, build, Vitest, Playwright) |
 
 ## Structure
 
@@ -32,6 +34,7 @@ docs/                         Engineering, testing, deployment, UI, UAT, progres
 backend/                      Django 5.2 / DRF app (approved MVP modules + API/auth)
 frontend/                     React + TypeScript + Vite + Tailwind SPA + Playwright/Vitest
 deploy/                       Nginx/Gunicorn/deployment templates
+.github/workflows/            CI pipeline (backend + frontend + E2E)
 SESSION_STATE.md              Restart checkpoint — read this first after a reboot
 PROJECT_CONTEXT.md            Living state of the project
 CHANGELOG.md                  Notable project/application changes

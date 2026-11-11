@@ -9,16 +9,34 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://127.0.0.1:3000';
 const isCI = !!process.env.CI;
 const authFile = path.join(__dirname, 'playwright/.auth/admin.json');
 const useStorageState = process.env.PLAYWRIGHT_USE_STORAGE_STATE === '1' && fs.existsSync(authFile);
+const python = process.platform === 'win32' ? 'py' : 'python';
+const backendDir = path.join(__dirname, '../backend');
 
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: false,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
-  workers: isCI ? 1 : undefined,
+  workers: 1,
   timeout: 30_000,
   expect: { timeout: 5_000 },
   reporter: isCI ? [['list'], ['html', { open: 'never' }]] : 'list',
+  webServer: [
+    {
+      command: `${python} manage.py runserver 127.0.0.1:8081 --noreload`,
+      cwd: backendDir,
+      url: 'http://127.0.0.1:8081/api/health/',
+      reuseExistingServer: !isCI,
+      timeout: 120_000,
+    },
+    {
+      command: 'npm run dev',
+      cwd: __dirname,
+      url: 'http://127.0.0.1:3000',
+      reuseExistingServer: !isCI,
+      timeout: 120_000,
+    },
+  ],
   use: {
     baseURL,
     trace: 'retain-on-failure',

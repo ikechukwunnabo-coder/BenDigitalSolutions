@@ -1,7 +1,7 @@
 # Open Actions Register
 
 Project: Ben Digital Solutions  
-Last updated: 2026-11-05  
+Last updated: 2026-11-11  
 Owner of all actions unless stated: Project Manager (Benjamin Ikechukwu Nnabo)
 
 | ID | Action | Source | Target phase | Status | Evidence / notes |
@@ -12,7 +12,7 @@ Owner of all actions unless stated: Project Manager (Benjamin Ikechukwu Nnabo)
 | OA-04 | Create risk register (probability, impact, mitigation, owner) | Charter A�12 | Phase 1 | **Closed (baseline v1.0)** | `project-management/04-monitoring-control/risk-register.md` (reviewed/active). |
 | OA-05 | Create communication plan and RACI matrix | Charter A�23 | Phase 1 | **Closed (baseline v1.0)** | `project-management/02-planning/communication-plan-raci.md`. |
 | OA-06 | Write requirements (FR/NFR), user stories, per-feature acceptance criteria | Charter A�5 | Phase 1 | **Closed (baseline v1.0)** | `project-management/02-planning/requirements-specification.md`. |
-| OA-07 | Appoint the Independent UAT Reviewer | Decision 3 | Before Week 11 | **Open (external; dev/UAT evidence ready)** | **Cannot be fully closed without external reviewer signature/evidence.** Readiness: manual local UAT PASS 2026-11-05; formal template `project-management/05-testing-acceptance/FORMAL_UAT_SIGNOFF_TEMPLATE.md`; backend tests **21/21**; Playwright smoke+a11y **6/6**; authenticated admin E2E/storageState path available (`frontend/e2e/*`). PM to obtain independent reviewer sign-off and attach completed form. |
+| OA-07 | Appoint the Independent UAT Reviewer | Decision 3 | Before Week 11 | **Closed (owner-confirmed 2026-11-11)** | Owner confirms the Independent UAT Reviewer was appointed and sign-off obtained. Evidence record: `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md`. Supporting automated evidence: manual local UAT PASS 2026-11-05; backend tests **21/21**; Playwright smoke+a11y **6/6**; authenticated admin E2E/storageState path (`frontend/e2e/*`). Final decision: **Accepted** (owner-confirmed 2026-11-11). Attach detailed per-module evidence as available (non-blocking). |
 | OA-08 | Personally review and sign approval record | Approval record | Phase 0 gate | **Closed** | Approved 2026-10-31 (approval-record v1.1). |
 | OA-09 | Holiday-aware capacity plan (21 Dec 2026�3 Jan 2027) + 15�20% contingency | Phase 0 auth | Phase 1 | **Closed (baseline)** | Captured in `project-schedule.md` and WBS v1.1 contingency (31.5 hrs / 18%). |
 | OA-10 | Resolve WBS filename ambiguity | File assessment | Phase 0 | **Closed** | Working copy `work-breakdown-structure.md`; original archived. |
@@ -25,8 +25,7 @@ Owner of all actions unless stated: Project Manager (Benjamin Ikechukwu Nnabo)
 | OA-17 | Confirm Django 5.2 supports installed Python 3.14, or use side-by-side 3.12 | Environment check | Phase 3 | **Closed** | Django 5.2.8+ supports Python 3.14; project pins compatible Django. |
 
 ## Open summary
-- **OA-07** � appoint Independent UAT Reviewer and capture formal sign-off evidence.
-- **OA-11** � user action: remove Word lock file if present.
+- **OA-11** � user action: remove Word lock file if present (administrative only; does not block closure).
 
 ## Rules
 - An action is closed only with a recorded resolution/evidence reference, not on intent.
