@@ -5,7 +5,12 @@ Format follows Keep a Changelog conventions; dates are ISO 8601.
 
 ## [Unreleased]
 
-_No unreleased changes recorded yet._
+### Changed
+- CI runners pinned to `ubuntu-24.04`; GitHub Actions bumped to Node 24-compatible majors (`checkout@v7`, `setup-node@v7`, `setup-python@v7`).
+- Frontend dependencies upgraded: `react-router-dom` 7.x, `@playwright/test` 1.65.x, `vitest` 4.x. `npm audit` now reports 0 vulnerabilities.
+
+### Fixed
+- Optional authenticated Playwright suites skip cleanly (before browser launch) when admin credentials are absent.
 
 ## [0.4.0] - 2026-11-11 — MVP closure, CI, and quality hardening
 
