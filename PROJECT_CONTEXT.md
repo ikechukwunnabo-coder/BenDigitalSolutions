@@ -33,7 +33,8 @@ Completed:
   across Django/DRF backend and React/TypeScript/Vite frontend (public site + admin SPA)
 - Workflow 8 shared UI component system and accessibility baseline
 - Phase 5 QA: backend tests **21/21**; Vitest smoke passing; Playwright smoke+a11y **6/6**;
-  manual local UAT **PASS 2026-11-05**; OA-07 formal UAT sign-off **owner-confirmed 2026-11-11**
+  manual local UAT **PASS 2026-11-05** and **re-run PASS 2026-11-11** (commit `0a1b625`);
+  OA-07 formal UAT sign-off **owner-confirmed 2026-11-11**
 - Quality hardening: GitHub Actions CI, Playwright `webServer` auto-start, `@axe-core/playwright`
 
 Deferred / not actioned:

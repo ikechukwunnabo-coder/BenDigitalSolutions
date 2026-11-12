@@ -9,7 +9,7 @@
 | **Phases 0-5** | Complete / approved MVP (8 modules, WBS v1.1) |
 | **Workflow 8 UI** | Implemented for MVP pages - shared UI/a11y; build OK; Vitest smoke |
 | **Playwright E2E** | Auto-start `webServer`, deterministic `127.0.0.1:3000/8081`, axe-core scans. Public smoke+a11y **6/6**; optional admin suites skip without credentials |
-| **Phase 5 QA** | Manual local UAT **PASS (2026-11-05)**; **OA-07 closed (owner-confirmed 2026-11-11)** |
+| **Phase 5 QA** | Manual local UAT **PASS (2026-11-05)** and **re-run PASS (2026-11-11, commit `0a1b625`)**; **OA-07 closed (owner-confirmed 2026-11-11)** |
 | **Phase 6 Closure** | **Closed** - closure report updated; production deployment **deferred by owner (2026-11-11)** |
 | **CI** | GitHub Actions **green** on `main` (run `43077766787`, 2026-11-11); `ubuntu-24.04`, Actions v7, `npm audit` 0 |
 | **Local re-verify** | 2026-11-11 post-restart: backend `check` clean, backend tests **21/21**, `npm run build` OK, Vitest **1/1**; local E2E deferred (RAM) |

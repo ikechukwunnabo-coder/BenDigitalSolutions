@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-11-11 (Post-restart verification + manual UAT re-run)
+- **Local verification:** backend `check` clean; backend tests **21/21**; frontend build OK; Vitest **1/1**. Local Playwright E2E deferred (host RAM ~0.9 GB free); CI green.
+- **OA-11 closed:** Word lock file `~$w to monitor your project in practice.docx` removed.
+- **OA-18 closed:** removed accidental 18-file duplicate Vite template directory; commit `0a1b625` pushed; CI run `43090397597` green (backend + frontend/E2E).
+- **Manual local UAT re-run: PASS** against `0a1b625` (owner-executed): public pages, enquiry validation/submission, admin auth, CRUD, portfolio publish/unpublish visibility, notifications, audit, access control. No defects reported. Recorded in `docs/uat/UAT_CHECKLIST.md`.
+
 ## 2026-11-11 (CI green + dependency security)
 - **CI fixed and green:** run `43073393351` passes backend + frontend; runners pinned to `ubuntu-24.04` (Playwright 1.52 rejected Ubuntu 26.04).
 - **Actions bumped:** `checkout@v7`, `setup-node@v7`, `setup-python@v7` (Node 20 deprecation warnings cleared).

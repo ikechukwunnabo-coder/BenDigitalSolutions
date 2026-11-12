@@ -22,6 +22,13 @@ Approved 8 modules: accounts, customers, crm, services, portfolio, projects, not
 | Audit | Pass | Read-only, restricted visibility; admin/API mutations logged |
 | Access control | Pass | Staff/admin-only areas protected |
 
+## Manual Local UAT Re-run (Executed 2026-11-11) - PASS
+- **Environment:** local Windows; backend `127.0.0.1:8081`, frontend `127.0.0.1:3000`; commit under test `0a1b625` (pushed to `origin/main`; CI run `43090397597` green).
+- **Automated pre-checks:** `/api/health/` 200; public `services`/`portfolio` 200; unauthenticated admin APIs (`projects`, `crm`, `customers`, `notifications`, `audit`, `auth/me`) 403; incomplete enquiry POST 400. Baseline data: 8 services, 5 portfolio (0 published), 4 projects, 5 customers, 5 leads, 4 notifications, 34 audit.
+- **Owner-executed walkthrough: PASS.** Public pages, contact validation + enquiry submission, admin login (valid/invalid), dashboard, leads status change, customers/services/projects CRUD, portfolio publish/unpublish visibility, notifications read/unread, audit read-only, and access control all confirmed.
+- **Defects:** none reported.
+- **Note:** public `/portfolio` was empty at baseline because 0 items were published (expected); publish/unpublish visibility was verified.
+
 ## Formal UAT (Closed)
 - **OA-07:** Closed — **Accepted** (owner-confirmed 2026-11-11). Evidence record: `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md`.
 - Final decision recorded as Accepted; attach reviewer name/date, execution dates, build/commit ID, evidence (screenshots/logs) and defects (if any) as available.

@@ -10,6 +10,7 @@ MVP implemented against the approved 8-module scope (WBS v1.1): `accounts`, `cus
 - **Development:** MVP core implemented (Django/DRF backend + React/Vite public SPA + React admin SPA).
 - **QA:** `manage.py check` passed; backend tests **21/21 passed**; frontend build passed; frontend Vitest smoke passed; Playwright smoke+a11y **6/6 passed**.
 - **Manual local UAT (2026-11-05): PASS** (public site, enquiry -> lead + notification, admin CRUD/status, portfolio publish visibility, notifications read/unread, audit read-only, access control). PostgreSQL local integration verified (`bds`).
+- **Manual local UAT re-run (2026-11-11): PASS** against commit `0a1b625` (CI `43090397597` green); same module flows re-confirmed; no defects reported. Recorded in `docs/uat/UAT_CHECKLIST.md`.
 - **Formal UAT (OA-07): Closed — Accepted (owner-confirmed 2026-11-11).** Evidence record: `project-management/05-testing-acceptance/Ben_Digital_Solutions_Formal_UAT_Signoff.md` (final decision recorded as Accepted; detailed per-module evidence to be attached as available).
 - **Production deployment: Deferred by owner decision (2026-11-11).** Templates/config remain prepared: `.env.example`, `deploy/nginx`, `deploy/gunicorn`, `docs/deployment/DEPLOYMENT_GUIDE.md`.
 - **Quality hardening:** GitHub Actions CI (`.github/workflows/ci.yml`), Playwright `webServer` auto-start, `@axe-core/playwright` accessibility scans, health endpoint `/api/health/`.
@@ -31,4 +32,5 @@ MVP implemented against the approved 8-module scope (WBS v1.1): `accounts`, `cus
 ## Closure Recommendation
 **Closed.** All MVP deliverables are complete and verified locally, and formal UAT is owner-confirmed.
 Production deployment is intentionally deferred and is not a closure condition for this decision.
-The only residual action is administrative: **OA-11** (remove the Word lock file if present).
+No open actions remain: **OA-11** (Word lock file) and **OA-18** (duplicate template directory) were
+closed on 2026-11-11.
