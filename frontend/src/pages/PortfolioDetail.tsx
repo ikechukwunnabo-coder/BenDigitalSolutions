@@ -17,9 +17,9 @@ export default function PortfolioDetail() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <Link to="/portfolio" className="text-sm text-sky-700 hover:underline">? Back to portfolio</Link>
+      <Link to="/portfolio" className="text-sm text-sky-700 hover:underline">&larr; Back to portfolio</Link>
       <h1 className="mt-3 text-3xl font-bold">{item.title}</h1>
-      <p className="mt-1 text-slate-600">{item.client}{item.project_date ? ` • ${item.project_date}` : ''}</p>
+      <p className="mt-1 text-slate-600">{item.client}{item.project_date ? ` - ${item.project_date}` : ''}</p>
       {item.image_url && <img src={item.image_url} alt={item.title} className="mt-6 max-h-96 w-full rounded-lg object-cover" />}
       <p className="mt-6 whitespace-pre-wrap text-slate-700">{item.description}</p>
     </div>

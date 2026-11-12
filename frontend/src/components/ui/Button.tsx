@@ -21,7 +21,7 @@ export function Button({ variant = 'primary', loading, className = '', disabled,
       className={`inline-flex items-center justify-center rounded px-4 py-2 text-sm font-semibold transition focus-visible:outline-none ${styles[variant]} ${className}`}
       {...props}
     >
-      {loading ? 'Please wait…' : children}
+      {loading ? 'Please wait...' : children}
     </button>
   );
 }

@@ -19,7 +19,7 @@ export default function Portfolio() {
         {items.map((item: any) => (
           <Link key={item.id || item.slug} to={`/portfolio/${item.slug}`} className="rounded-lg border bg-white p-5 shadow-sm hover:border-sky-300">
             {item.image_url && <img src={item.image_url} alt={item.title} className="mb-3 h-40 w-full rounded object-cover" />}
-            <div className="text-sm text-slate-500">{item.client}{item.project_date ? ` • ${item.project_date}` : ''}</div>
+            <div className="text-sm text-slate-500">{item.client}{item.project_date ? ` - ${item.project_date}` : ''}</div>
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <p className="mt-2 text-sm text-slate-600 line-clamp-3">{item.description}</p>
           </Link>

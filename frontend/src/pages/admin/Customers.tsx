@@ -25,8 +25,8 @@ export default function Customers() {
           <div className="md:col-span-2"><Button type="submit" loading={saving}>Add Customer</Button></div>
         </form>
       </Card>
-      {loading ? <LoadingState label="Loading customers?" /> : !items.length ? <EmptyState title="No customers" description="Add a customer to begin tracking work." /> : (
-        <div className="space-y-2">{items.map((c) => <Card key={c.id} className="flex items-center justify-between gap-3"><div><div className="font-medium">{c.name}</div><div className="text-sm text-slate-600">{c.email} ? {c.phone} ? {c.company || '?'}</div></div><Button variant="ghost" onClick={() => remove(c.id)}>Delete</Button></Card>)}</div>
+      {loading ? <LoadingState label="Loading customers..." /> : !items.length ? <EmptyState title="No customers" description="Add a customer to begin tracking work." /> : (
+        <div className="space-y-2">{items.map((c) => <Card key={c.id} className="flex items-center justify-between gap-3"><div><div className="font-medium">{c.name}</div><div className="text-sm text-slate-600">{c.email} &middot; {c.phone} &middot; {c.company || 'N/A'}</div></div><Button variant="ghost" onClick={() => remove(c.id)}>Delete</Button></Card>)}</div>
       )}
     </div>
   );

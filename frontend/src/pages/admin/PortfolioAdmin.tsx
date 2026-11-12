@@ -27,7 +27,7 @@ export default function PortfolioAdmin() {
         <label className="text-sm"><input type="checkbox" checked={form.is_featured} onChange={(e)=>setForm({...form,is_featured:e.target.checked})} /> Featured</label>
         <div className="md:col-span-2"><Button type="submit" loading={saving}>Add Portfolio Item</Button></div>
       </form></Card>
-      {loading ? <LoadingState label="Loading portfolio?" /> : !items.length ? <EmptyState title="No portfolio items" description="Add a project to showcase published work." /> : (
+      {loading ? <LoadingState label="Loading portfolio..." /> : !items.length ? <EmptyState title="No portfolio items" description="Add a project to showcase published work." /> : (
         <div className="space-y-2">{items.map((p) => <Card key={p.id} className="flex items-center justify-between gap-3"><div><div className="flex items-center gap-2 font-medium">{p.title} <Badge tone={p.is_published ? 'success' : 'warning'}>{p.is_published ? 'Published' : 'Draft'}</Badge>{p.is_featured ? <Badge tone="info">Featured</Badge> : null}</div><div className="text-sm text-slate-600">{p.client}</div></div><Button variant="secondary" onClick={() => publish(p, !p.is_published)}>{p.is_published ? 'Unpublish' : 'Publish'}</Button></Card>)}</div>
       )}
     </div>

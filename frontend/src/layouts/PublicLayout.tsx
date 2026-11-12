@@ -18,7 +18,7 @@ export default function PublicLayout() {
       </nav>
       <main><Outlet /></main>
       <footer className="mt-16 border-t bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-600">© {new Date().getFullYear()} Ben Digital Solutions. Port Harcourt, Nigeria.</div>
+        <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-600">&copy; {new Date().getFullYear()} Ben Digital Solutions. Port Harcourt, Nigeria.</div>
       </footer>
     </div>
   );

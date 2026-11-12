@@ -17,7 +17,7 @@ export default function ServiceDetail() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <Link to="/services" className="text-sm text-sky-700 hover:underline">? Back to services</Link>
+      <Link to="/services" className="text-sm text-sky-700 hover:underline">&larr; Back to services</Link>
       <h1 className="mt-3 mb-4 text-3xl font-bold">{service.title}</h1>
       <p className="mb-6 whitespace-pre-wrap text-slate-700">{service.description}</p>
       {service.features && <div className="mb-6 rounded-lg border bg-white p-4"><h2 className="font-semibold">Key features</h2><p className="mt-2 whitespace-pre-wrap text-sm text-slate-600">{service.features}</p></div>}

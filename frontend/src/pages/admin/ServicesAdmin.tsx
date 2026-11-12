@@ -22,7 +22,7 @@ export default function ServicesAdmin() {
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={form.is_active} onChange={(e) => setForm({ ...form, is_active: e.target.checked })} /> Active</label>
         <Button type="submit" loading={saving}>Add Service</Button>
       </form></Card>
-      {loading ? <LoadingState label="Loading services?" /> : !items.length ? <EmptyState title="No services" description="Create a service to display on the public site." /> : (
+      {loading ? <LoadingState label="Loading services..." /> : !items.length ? <EmptyState title="No services" description="Create a service to display on the public site." /> : (
         <div className="space-y-2">{items.map((s) => <Card key={s.id} className="flex items-center justify-between gap-3"><div><div className="flex items-center gap-2 font-medium">{s.title} <Badge tone={s.is_active ? 'success' : 'default'}>{s.is_active ? 'Active' : 'Inactive'}</Badge></div></div><Button variant="secondary" onClick={() => toggle(s)}>{s.is_active ? 'Deactivate' : 'Activate'}</Button></Card>)}</div>
       )}
     </div>

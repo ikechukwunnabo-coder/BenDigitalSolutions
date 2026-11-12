@@ -25,7 +25,7 @@ export default function ProjectsAdmin() {
         <div className="md:col-span-2"><TextAreaField label="Description" name="description" value={form.description} onChange={(e)=>setForm({...form,description:e.target.value})} required /></div>
         <div className="md:col-span-2"><Button type="submit" loading={saving}>Add Project</Button></div>
       </form></Card>
-      {loading ? <LoadingState label="Loading projects?" /> : !items.length ? <EmptyState title="No projects" description="Create a project for a customer." /> : (
+      {loading ? <LoadingState label="Loading projects..." /> : !items.length ? <EmptyState title="No projects" description="Create a project for a customer." /> : (
         <div className="space-y-2">{items.map((p) => <Card key={p.id} className="flex flex-wrap items-center justify-between gap-3"><div><div className="flex items-center gap-2 font-medium">{p.title} <Badge tone={p.status==='completed'?'success':p.status==='in_progress'?'info':'default'}>{p.status}</Badge></div><div className="text-sm text-slate-600">Customer #{p.customer}</div></div><div className="w-full max-w-xs"><SelectField label="Update status" name={`project-status-${p.id}`} value={p.status} onChange={(e)=>update(p.id,e.target.value)} options={statuses} /></div></Card>)}</div>
       )}
     </div>

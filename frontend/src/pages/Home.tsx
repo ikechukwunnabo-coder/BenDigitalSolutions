@@ -27,9 +27,9 @@ export default function Home() {
           <div className="rounded-xl bg-white/10 p-6 backdrop-blur">
             <h2 className="mb-3 font-semibold">What this MVP delivers</h2>
             <ul className="space-y-2 text-sm text-slate-200">
-              <li>• Public website with services and portfolio</li>
-              <li>• Enquiry capture and lead management</li>
-              <li>• Customer, project, notification, and audit modules</li>
+              <li>&bull; Public website with services and portfolio</li>
+              <li>&bull; Enquiry capture and lead management</li>
+              <li>&bull; Customer, project, notification, and audit modules</li>
             </ul>
           </div>
         </div>

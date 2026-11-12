@@ -13,7 +13,7 @@ export default function AdminLayout() {
   }, [navigate]);
 
   const logout = async () => { try { await api.post('/auth/logout/'); } catch {} navigate('/admin/login'); };
-  if (loading) return <div className="p-8"><LoadingState label="Checking session…" /></div>;
+  if (loading) return <div className="p-8"><LoadingState label="Checking session..." /></div>;
 
   const link = ({ isActive }: any) => `block rounded px-3 py-2 focus-visible:outline-none ${isActive ? 'bg-sky-600 text-white' : 'text-slate-700 hover:bg-slate-100'}`;
   return (
@@ -21,7 +21,7 @@ export default function AdminLayout() {
       <a href="#admin-main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">Skip to main content</a>
       <div className="flex">
         <aside className="min-h-screen w-64 border-r bg-white p-4" aria-label="Admin navigation">
-          <Link to="/" className="mb-4 block text-sm text-sky-700 hover:underline">? Public site</Link>
+          <Link to="/" className="mb-4 block text-sm text-sky-700 hover:underline">&larr; Public site</Link>
           <h2 className="mb-4 font-bold text-slate-900">Admin Dashboard</h2>
           <nav className="space-y-1 text-sm" aria-label="Admin sections">
             <NavLink to="/admin" end className={link}>Overview</NavLink>

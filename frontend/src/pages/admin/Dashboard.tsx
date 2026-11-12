@@ -15,10 +15,10 @@ export default function Dashboard() {
     <div>
       <PageHeader title="Overview" description="Operational summary across MVP modules." />
       {error ? <Alert variant="error" className="mb-4">{error}</Alert> : null}
-      {loading ? <LoadingState label="Loading dashboard?" /> : (
+      {loading ? <LoadingState label="Loading dashboard..." /> : (
         <div className="grid gap-4 md:grid-cols-3" aria-live="polite">
           {cards.map(([label, value]) => (
-            <Card key={String(label)}><div className="text-sm text-slate-500">{label}</div><div className="text-2xl font-bold" aria-label={`${label}: ${value ?? 'unavailable'}`}>{value ?? '?'}</div></Card>
+            <Card key={String(label)}><div className="text-sm text-slate-500">{label}</div><div className="text-2xl font-bold" aria-label={`${label}: ${value ?? 'unavailable'}`}>{value ?? 'N/A'}</div></Card>
           ))}
         </div>
       )}
